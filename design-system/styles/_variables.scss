@@ -1,22 +1,31 @@
 // File 04 — Design tokens
-// All components must reference these; no raw hex/px in component files.
+// Color values live in _themes.scss as CSS custom properties.
 
 // --- Root scale (15px base per File 04 §8) ---
 $root-font-size: 15px;
 
-// --- Colors ---
-$color-ink: #111111;
-$color-ink-light: #222222;
-$color-paper: #faf9f4;
-$color-highlighter-yellow: #f5c518;
-$color-mustard: #c99a2e;
-$color-slate-100: #f5f5f3;
-$color-slate-300: #e8e7e1;
-$color-slate-500: #c9c7be;
-$color-slate-700: #8a877d;
-$color-slate-900: #57544c;
-$color-signal-green: #4b7b4f;
-$color-signal-rust: #b4472a;
+// --- Colors (theme-aware via CSS variables) ---
+$color-ink: var(--color-ink);
+$color-ink-light: var(--color-ink-light);
+$color-paper: var(--color-paper);
+$color-highlighter-yellow: var(--color-highlighter-yellow);
+$color-mustard: var(--color-mustard);
+$color-slate-100: var(--color-slate-100);
+$color-slate-300: var(--color-slate-300);
+$color-slate-500: var(--color-slate-500);
+$color-slate-700: var(--color-slate-700);
+$color-slate-900: var(--color-slate-900);
+$color-signal-green: var(--color-signal-green);
+$color-signal-rust: var(--color-signal-rust);
+$color-pill-bg: var(--color-pill-bg);
+$color-grid-dot: var(--color-grid-dot);
+$color-button-primary-bg: var(--color-button-primary-bg);
+$color-button-primary-text: var(--color-button-primary-text);
+$color-button-primary-hover: var(--color-button-primary-hover);
+$color-button-secondary-bg: var(--color-button-secondary-bg);
+$color-button-secondary-text: var(--color-button-secondary-text);
+$color-button-secondary-border: var(--color-button-secondary-border);
+$color-highlight-mark: var(--color-highlight-mark);
 
 // --- Typography ---
 $font-ui: 'Stack Sans Notch', system-ui, sans-serif;
@@ -48,19 +57,19 @@ $leading-body: 1.6;
 $leading-small: 1.5;
 
 // --- Spacing (8px base) ---
-$space-1: 0.25rem; // 4px
-$space-2: 0.5rem; // 8px
-$space-3: 0.75rem; // 12px
-$space-4: 1rem; // 16px
-$space-6: 1.5rem; // 24px
-$space-8: 2rem; // 32px
-$space-12: 3rem; // 48px
-$space-16: 4rem; // 64px
-$space-24: 6rem; // 96px
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-12: 3rem;
+$space-16: 4rem;
+$space-24: 6rem;
 
 // --- Layout ---
-$content-max-width: 45rem; // ~720px
-$page-max-width: 75rem; // 1200px
+$content-max-width: 45rem;
+$page-max-width: 75rem;
 $grid-gutter: $space-6;
 
 // --- Breakpoints ---
@@ -72,12 +81,14 @@ $breakpoint-xl: 1280px;
 // --- Shape ---
 $radius-sm: 4px;
 $radius-card: 8px;
-$shadow-soft: 0 2px 8px rgba(17, 17, 17, 0.06);
-$border-default: 1px solid $color-slate-300;
+$shadow-soft: var(--shadow-soft);
+$shadow-elevated: var(--shadow-elevated);
+$border-default: 1px solid var(--color-slate-300);
 
 // --- Motion ---
 $transition-fast: 150ms ease-out;
 $transition-highlighter: 220ms ease-out;
+$transition-theme: 200ms ease-out;
 
 // --- Z-index ---
 $z-nav: 100;

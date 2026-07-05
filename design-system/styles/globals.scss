@@ -1,3 +1,4 @@
+@use 'themes';
 @use 'variables' as *;
 @use 'mixins' as *;
 
@@ -19,22 +20,7 @@ body {
   @include type-body;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-// CSS custom properties for runtime JS (hero glow, etc.)
-:root {
-  --color-ink: #{$color-ink};
-  --color-paper: #{$color-paper};
-  --color-highlighter-yellow: #{$color-highlighter-yellow};
-  --color-mustard: #{$color-mustard};
-  --color-slate-100: #{$color-slate-100};
-  --color-slate-300: #{$color-slate-300};
-  --color-slate-700: #{$color-slate-700};
-  --font-ui: #{$font-ui};
-  --font-display: #{$font-display};
-  --font-body: #{$font-body};
-  --mx: 50%;
-  --my: 50%;
+  transition: background-color $transition-theme, color $transition-theme;
 }
 
 h1,

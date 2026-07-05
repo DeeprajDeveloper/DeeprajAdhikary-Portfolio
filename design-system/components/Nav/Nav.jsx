@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { navLinks, site } from '@data/index';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Nav.scss';
 
 export default function Nav({ transparent = false }) {
@@ -34,6 +35,7 @@ export default function Nav({ transparent = false }) {
               {label}
             </Link>
           ))}
+          <ThemeToggle />
         </nav>
       </div>
     </header>

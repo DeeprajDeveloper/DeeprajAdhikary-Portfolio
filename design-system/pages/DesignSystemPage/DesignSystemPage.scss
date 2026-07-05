@@ -53,13 +53,13 @@
     border-left: 3px solid transparent;
 
     &--active {
-      background-color: rgba($color-highlighter-yellow, 0.25);
+      background-color: color-mix(in srgb, var(--color-highlighter-yellow) 25%, transparent);
       border-left-color: $color-highlighter-yellow;
       color: $color-ink;
     }
 
     &:hover {
-      background-color: rgba($color-highlighter-yellow, 0.15);
+      background-color: color-mix(in srgb, var(--color-highlighter-yellow) 15%, transparent);
     }
   }
 
@@ -213,7 +213,7 @@
 }
 
 .ds-spacing-bar {
-  background-color: rgba($color-highlighter-yellow, 0.5);
+  background-color: color-mix(in srgb, var(--color-highlighter-yellow) 50%, transparent);
   border: $border-default;
 }
 
@@ -233,7 +233,7 @@
 
   &__content {
     max-width: $content-max-width;
-    background: rgba($color-highlighter-yellow, 0.15);
+    background: color-mix(in srgb, var(--color-highlighter-yellow) 15%, transparent);
   }
 
   &__page {

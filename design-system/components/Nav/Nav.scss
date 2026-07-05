@@ -14,6 +14,7 @@
   &--solid {
     background-color: $color-paper;
     border-bottom: $border-default;
+    transition: background-color $transition-theme, border-color $transition-theme;
   }
 
   &__inner {
@@ -37,6 +38,7 @@
   &__links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: $space-4 $space-6;
   }
 

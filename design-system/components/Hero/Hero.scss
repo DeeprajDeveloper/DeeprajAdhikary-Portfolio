@@ -14,7 +14,7 @@
   &__grid {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient($color-slate-300 1px, transparent 1px);
+    background-image: radial-gradient($color-grid-dot 1px, transparent 1px);
     background-size: 24px 24px;
     opacity: 0.5;
     pointer-events: none;
@@ -25,7 +25,7 @@
     inset: 0;
     background: radial-gradient(
       circle at var(--mx, 50%) var(--my, 50%),
-      rgba($color-highlighter-yellow, 0.18) 0%,
+      color-mix(in srgb, var(--color-highlighter-yellow) 18%, transparent) 0%,
       transparent 45%
     );
     pointer-events: none;
@@ -46,7 +46,7 @@
     font-family: $font-ui;
     font-weight: $font-weight-medium;
     font-size: $text-small;
-    background-color: $color-ink;
+    background-color: $color-pill-bg;
     color: $color-highlighter-yellow;
     padding: $space-2 $space-4;
     border-radius: $radius-sm;
@@ -88,12 +88,15 @@
   }
 
   &__highlight {
+    color: inherit;
     background: linear-gradient(
       to top,
-      rgba($color-highlighter-yellow, 0.55) 35%,
-      transparent 35%
+      $color-highlight-mark 40%,
+      transparent 40%
     );
     padding-inline: 0.1em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   &__subhead {

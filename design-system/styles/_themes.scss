@@ -1,0 +1,58 @@
+// Theme tokens — swap via [data-theme] on <html>
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --color-ink: #111111;
+  --color-ink-light: #222222;
+  --color-paper: #faf9f4;
+  --color-highlighter-yellow: #f5c518;
+  --color-mustard: #c99a2e;
+  --color-slate-100: #f5f5f3;
+  --color-slate-300: #e8e7e1;
+  --color-slate-500: #c9c7be;
+  --color-slate-700: #8a877d;
+  --color-slate-900: #57544c;
+  --color-signal-green: #4b7b4f;
+  --color-signal-rust: #b4472a;
+  --color-pill-bg: #111111;
+  --color-grid-dot: #e8e7e1;
+  --color-button-primary-bg: #111111;
+  --color-button-primary-text: #faf9f4;
+  --color-button-primary-hover: #222222;
+  --color-button-secondary-bg: #faf9f4;
+  --color-button-secondary-text: #111111;
+  --color-button-secondary-border: #111111;
+  --color-highlight-mark: #f5c518;
+  --shadow-soft: 0 2px 8px rgba(17, 17, 17, 0.06);
+  --shadow-elevated: 0 4px 16px rgba(17, 17, 17, 0.08);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-ink: #f5f4ef;
+  --color-ink-light: #e8e7e2;
+  --color-paper: #1a1916;
+  --color-highlighter-yellow: #f5c518;
+  --color-mustard: #d4a82e;
+  --color-slate-100: #242320;
+  --color-slate-300: #3d3b36;
+  --color-slate-500: #5c5952;
+  --color-slate-700: #a8a49a;
+  --color-slate-900: #c9c5bb;
+  --color-signal-green: #6ba06f;
+  --color-signal-rust: #d4624a;
+  --color-pill-bg: #2a2926;
+  --color-grid-dot: #3d3b36;
+  --color-button-primary-bg: #f5c518;
+  --color-button-primary-text: #111111;
+  --color-button-primary-hover: #e0b415;
+  --color-button-secondary-bg: #f5f4ef;
+  --color-button-secondary-text: #111111;
+  --color-button-secondary-border: #111111;
+  --color-highlight-mark: #f5c518;
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.36);
+}

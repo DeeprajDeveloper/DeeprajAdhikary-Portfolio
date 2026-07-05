@@ -10,3 +10,5 @@ export { default as Hero } from './components/Hero/Hero';
 export { default as CareerJourney } from './components/CareerJourney/CareerJourney';
 export { default as Input } from './components/Input/Input';
 export * from './components/Icons/Icons';
+export { default as ThemeToggle } from './components/ThemeToggle/ThemeToggle';
+export { ThemeProvider, useTheme } from './context/ThemeContext';

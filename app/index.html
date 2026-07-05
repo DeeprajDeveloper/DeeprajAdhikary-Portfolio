@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Deepraj Adhikary — Business Systems Analyst portfolio" />
     <title>Deepraj Adhikary</title>
+    <script>
+      (function () {
+        var stored = localStorage.getItem('portfolio-theme');
+        var theme =
+          stored ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
