@@ -1,0 +1,38 @@
+@use '../../styles/mixins' as *;
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &__label {
+    @include type-h4;
+    font-size: $text-small;
+  }
+
+  &__control {
+    font-family: $font-body;
+    font-size: $text-body;
+    padding: $space-3 $space-4;
+    border: $border-default;
+    border-radius: $radius-sm;
+    background-color: $color-paper;
+    color: $color-ink;
+    transition: border-color $transition-fast;
+    @include focus-ring;
+
+    &::placeholder {
+      color: $color-slate-500;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: $color-slate-500;
+    }
+  }
+
+  &--disabled &__control {
+    background-color: $color-slate-100;
+    color: $color-slate-500;
+    cursor: not-allowed;
+  }
+}

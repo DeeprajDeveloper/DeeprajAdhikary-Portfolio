@@ -1,0 +1,161 @@
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-16 $space-6 $space-12;
+  overflow: hidden;
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient($color-slate-300 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba($color-highlighter-yellow, 0.18) 0%,
+      transparent 45%
+    );
+    pointer-events: none;
+    transition: background $transition-fast;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    @include content-column;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-ui;
+    font-weight: $font-weight-medium;
+    font-size: $text-small;
+    background-color: $color-ink;
+    color: $color-highlighter-yellow;
+    padding: $space-2 $space-4;
+    border-radius: $radius-sm;
+    margin-bottom: $space-6;
+    min-width: calc(27ch + #{$space-8} + 4px);
+    height: 40px;
+  }
+
+  &__eyebrow-line {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  &__eyebrow-text {
+    display: inline;
+  }
+
+  &__eyebrow-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background-color: $color-highlighter-yellow;
+    animation: hero-cursor-blink 0.9s step-end infinite;
+    flex-shrink: 0;
+    margin-left: 2px;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+
+  &__hook {
+    @include type-display;
+    margin-bottom: $space-6;
+    // max-width: 20ch;
+    margin-inline: auto;
+  }
+
+  &__highlight {
+    background: linear-gradient(
+      to top,
+      rgba($color-highlighter-yellow, 0.55) 35%,
+      transparent 35%
+    );
+    padding-inline: 0.1em;
+  }
+
+  &__subhead {
+    @include type-body;
+    color: $color-slate-900;
+    // max-width: 42ch;
+    margin-inline: auto;
+    margin-bottom: $space-8;
+  }
+
+  &__scroll-cue {
+    position: absolute;
+    bottom: $space-8;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    padding: $space-4;
+    @include focus-ring;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+  }
+
+  &__scroll-cue-text {
+    @include type-body;
+    color: $color-slate-900;
+    font-weight: $font-weight-medium;
+  }
+
+  &__scroll-icon {
+    color: $color-ink;
+    animation: hero-scroll-bounce 2s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes hero-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}

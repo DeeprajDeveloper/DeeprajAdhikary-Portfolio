@@ -1,0 +1,24 @@
+@use '@design-system/styles/mixins' as *;
+
+.placeholder-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    @include page-container;
+    flex: 1;
+    padding-block: $space-16;
+
+    h1 {
+      @include type-h1;
+      margin-bottom: $space-6;
+    }
+
+    p {
+      @include type-body;
+      @include content-column;
+      color: $color-slate-900;
+    }
+  }
+}

@@ -1,0 +1,291 @@
+@use '../../styles/mixins' as *;
+
+.ds-page {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    padding: $space-8 $space-6;
+    border-right: $border-default;
+    background-color: $color-paper;
+    overflow-y: auto;
+
+    @media (max-width: $breakpoint-lg) {
+      position: relative;
+      height: auto;
+      border-right: none;
+      border-bottom: $border-default;
+    }
+  }
+
+  &__sidebar-title {
+    @include type-h4;
+    margin-bottom: $space-6;
+  }
+
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__nav-link {
+    display: block;
+    padding: $space-2 $space-3;
+    font-family: $font-ui;
+    font-size: $text-small;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    color: $color-slate-900;
+    border-radius: $radius-sm;
+    border-left: 3px solid transparent;
+
+    &--active {
+      background-color: rgba($color-highlighter-yellow, 0.25);
+      border-left-color: $color-highlighter-yellow;
+      color: $color-ink;
+    }
+
+    &:hover {
+      background-color: rgba($color-highlighter-yellow, 0.15);
+    }
+  }
+
+  &__main {
+    padding: $space-8 $space-6 $space-24;
+    max-width: 900px;
+  }
+
+  &__header {
+    margin-bottom: $space-12;
+
+    h1 {
+      @include type-h1;
+      margin-bottom: $space-4;
+    }
+
+    p {
+      @include type-body;
+      color: $color-slate-900;
+    }
+  }
+}
+
+.ds-section {
+  margin-bottom: $space-16;
+  scroll-margin-top: $space-8;
+
+  &__title {
+    @include type-h2;
+    margin-bottom: $space-6;
+    padding-bottom: $space-3;
+    border-bottom: $border-default;
+  }
+
+  &__intro {
+    @include type-body;
+    color: $color-slate-900;
+    margin-bottom: $space-6;
+  }
+}
+
+.ds-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: $space-4;
+}
+
+.ds-swatch {
+  border: $border-default;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  background: $color-paper;
+
+  &__chip {
+    height: 64px;
+    border-bottom: $border-default;
+  }
+
+  &__name {
+    @include type-h4;
+    font-size: $text-small;
+    padding: $space-2 $space-3 0;
+    margin: 0;
+  }
+
+  &__hex {
+    @include type-small;
+    font-family: $font-code;
+    padding: 0 $space-3;
+    margin: 0;
+    color: $color-slate-700;
+  }
+
+  &__note {
+    @include type-small;
+    padding: $space-2 $space-3 $space-3;
+    margin: 0;
+    color: $color-slate-900;
+  }
+}
+
+.ds-type-specimens {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.ds-type-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: $space-4;
+  align-items: baseline;
+  padding-bottom: $space-4;
+  border-bottom: $border-default;
+}
+
+.ds-type-label {
+  @include type-small;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  color: $color-slate-700;
+}
+
+.ds-type-display {
+  @include type-display;
+  margin: 0;
+}
+
+.ds-type-h1 {
+  @include type-h1;
+  margin: 0;
+}
+
+.ds-type-h2 {
+  @include type-h2;
+  margin: 0;
+}
+
+.ds-type-h3 {
+  @include type-h3;
+  margin: 0;
+}
+
+.ds-type-body {
+  @include type-body;
+  margin: 0;
+}
+
+.ds-type-body-code {
+  @include type-body-code;
+  margin: 0;
+}
+
+.ds-spacing-ruler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+  margin-bottom: $space-8;
+}
+
+.ds-spacing-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+
+  span {
+    @include type-small;
+    font-family: $font-code;
+  }
+}
+
+.ds-spacing-bar {
+  background-color: rgba($color-highlighter-yellow, 0.5);
+  border: $border-default;
+}
+
+.ds-grid-demo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  &__content,
+  &__page {
+    padding: $space-4;
+    border: $border-default;
+    border-radius: $radius-sm;
+    @include type-small;
+    text-align: center;
+  }
+
+  &__content {
+    max-width: $content-max-width;
+    background: rgba($color-highlighter-yellow, 0.15);
+  }
+
+  &__page {
+    max-width: $page-max-width;
+    background: $color-slate-100;
+  }
+}
+
+.ds-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8;
+}
+
+.ds-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+  color: $color-ink;
+
+  span {
+    @include type-small;
+  }
+
+  &--accent {
+    color: $color-mustard;
+  }
+}
+
+.ds-motion-demo {
+  @include type-h4;
+  @include highlighter-swipe;
+  display: inline-block;
+}
+
+.ds-component-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+  align-items: center;
+}
+
+.ds-nav-demo {
+  border: $border-default;
+  border-radius: $radius-card;
+  overflow: hidden;
+}
+
+.ds-form-demo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  max-width: 360px;
+}

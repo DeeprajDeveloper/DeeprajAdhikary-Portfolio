@@ -1,0 +1,65 @@
+@use '../../styles/mixins' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  font-size: $text-h4;
+  line-height: 1;
+  border-radius: $radius-sm;
+  border: $border-default;
+  padding: $space-3 $space-6;
+  transition: background-color $transition-fast, border-color $transition-fast,
+    opacity $transition-fast;
+  text-decoration: none;
+  @include focus-ring;
+
+  &--sm {
+    font-size: $text-small;
+    padding: $space-2 $space-4;
+  }
+
+  &--md {
+    padding: $space-3 $space-6;
+  }
+
+  &--primary {
+    background-color: $color-ink;
+    color: $color-paper;
+    border-color: $color-ink;
+
+    &:hover:not(:disabled) {
+      background-color: $color-ink-light;
+      border-color: $color-ink-light;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-paper;
+    color: $color-ink;
+    border-color: $color-ink;
+
+    &:hover:not(:disabled) {
+      background-color: $color-slate-300;
+    }
+  }
+
+  &--tertiary {
+    background: transparent;
+    border-color: transparent;
+    padding-inline: 0;
+    @include highlighter-swipe;
+
+    &:hover:not(:disabled) {
+      background: transparent;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}

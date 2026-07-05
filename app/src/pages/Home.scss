@@ -1,0 +1,39 @@
+@use '@design-system/styles/mixins' as *;
+
+.home {
+  &__case-studies {
+    padding: $space-16 $space-6;
+  }
+
+  &__case-studies-inner {
+    @include page-container;
+  }
+
+  &__section-title {
+    @include type-h2;
+    margin-bottom: $space-4;
+    text-align: center;
+  }
+
+  &__section-intro {
+    @include type-body;
+    color: $color-slate-900;
+    // @include content-column;
+    margin-bottom: $space-8;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__cards {
+    display: grid;
+    gap: $space-6;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
