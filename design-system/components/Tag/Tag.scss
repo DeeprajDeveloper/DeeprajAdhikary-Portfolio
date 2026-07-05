@@ -14,7 +14,25 @@
 
   &--skill {
     background-color: $color-highlighter-yellow;
-    color: $color-ink;
+    color: var(--color-button-primary-text);
+    border-color: transparent;
+  }
+
+  &--ba {
+    background-color: $color-highlighter-yellow;
+    color: var(--color-button-primary-text);
+    border-color: transparent;
+  }
+
+  &--dev {
+    background-color: $color-ink;
+    color: $color-paper;
+    border-color: transparent;
+  }
+
+  &--qe {
+    background-color: $color-signal-green;
+    color: $color-paper;
     border-color: transparent;
   }
 

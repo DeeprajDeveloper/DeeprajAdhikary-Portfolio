@@ -1,0 +1,99 @@
+@use '../../styles/mixins' as *;
+
+.perspective-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.perspective-switcher__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+}
+
+.perspective-switcher__tab {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: $radius-full;
+  @include focus-ring;
+
+  &:not(.perspective-switcher__tab--active) .tag {
+    background-color: transparent;
+    color: $color-slate-700;
+    border-color: $color-slate-500;
+  }
+}
+
+.perspective-switcher__panel {
+  padding: $space-8;
+  border-radius: $radius-card;
+  border: $border-default;
+  background-color: $color-slate-100;
+  box-shadow: $shadow-soft;
+
+  &--ba {
+    border-top: 3px solid $color-mustard;
+  }
+
+  &--dev {
+    border-top: 3px solid $color-ink;
+  }
+
+  &--qe {
+    border-top: 3px solid $color-signal-green;
+  }
+}
+
+.perspective-switcher__tagline {
+  @include type-h3;
+  margin-bottom: $space-6;
+}
+
+.perspective-switcher__focus {
+  list-style: none;
+  display: grid;
+  gap: $space-2;
+  margin-bottom: $space-8;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  li {
+    @include type-small;
+    color: $color-slate-900;
+    padding-left: $space-4;
+    position: relative;
+
+    &::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: $color-slate-700;
+    }
+  }
+}
+
+.perspective-switcher__scenario {
+  padding: $space-6;
+  background-color: $color-paper;
+  border-radius: $radius-card;
+  border: $border-default;
+}
+
+.perspective-switcher__scenario-title {
+  @include label-caps;
+  margin-bottom: $space-3;
+}
+
+.perspective-switcher__scenario-question {
+  @include type-h4;
+  margin-bottom: $space-4;
+}
+
+.perspective-switcher__scenario-response {
+  @include prose;
+}

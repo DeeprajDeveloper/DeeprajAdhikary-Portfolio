@@ -1,0 +1,54 @@
+@use '../../styles/mixins' as *;
+
+.perspective-card {
+  background-color: $color-slate-100;
+  border: $border-default;
+  border-radius: $radius-card;
+  box-shadow: $shadow-soft;
+  transition: box-shadow $transition-fast, transform $transition-fast,
+    background-color $transition-theme, border-color $transition-theme;
+
+  &:hover {
+    box-shadow: $shadow-elevated;
+    transform: translateY(-2px);
+  }
+
+  &--ba {
+    border-left: 3px solid $color-mustard;
+  }
+
+  &--dev {
+    border-left: 3px solid $color-ink;
+  }
+
+  &--qe {
+    border-left: 3px solid $color-signal-green;
+  }
+
+  &__link {
+    display: block;
+    padding: $space-6;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  &__title {
+    @include type-h3;
+    margin-bottom: $space-3;
+  }
+
+  &__description {
+    @include type-body;
+    color: $color-slate-900;
+    margin-bottom: $space-4;
+  }
+
+  &__cta {
+    @include type-small;
+    font-family: $font-ui;
+    font-weight: $font-weight-medium;
+    color: $color-ink;
+    @include highlighter-swipe;
+  }
+}

@@ -1,55 +1,183 @@
 @use '../../styles/mixins' as *;
 
-.site-nav {
-  position: sticky;
+$nav-item-height: 52px;
+
+.side-nav {
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: $z-nav;
-  transition: background-color $transition-fast, border-color $transition-fast;
+  display: none;
+  flex-direction: column;
+  width: $side-nav-width;
+  height: 100vh;
+  height: 100dvh;
+  padding: $space-8 $space-6;
+  border-right: $border-default;
+  background-color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  transition: background-color $transition-theme, border-color $transition-theme,
+    backdrop-filter $transition-theme;
 
-  &--transparent {
+  @include respond-to(md) {
+    display: flex;
+  }
+
+  &--home {
     background-color: transparent;
-    border-bottom: 1px solid transparent;
+    border-right-color: transparent;
+    backdrop-filter: none;
   }
 
-  &--solid {
-    background-color: $color-paper;
-    border-bottom: $border-default;
-  }
-
-  &__inner {
-    @include page-container;
+  &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: $space-4;
-    gap: $space-6;
+    gap: $space-3;
+    margin-bottom: $space-6;
+    flex-shrink: 0;
   }
 
   &__brand {
     font-family: $font-ui;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
     font-size: $text-h4;
     text-decoration: none;
     color: $color-ink;
-    white-space: nowrap;
+    @include highlighter-swipe;
   }
 
-  &__links {
+  &__viewport {
+    flex: 1;
+    min-height: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: $space-4 $space-6;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding-block: $space-4;
+    margin-inline: -#{$space-2};
+    padding-inline: $space-2;
+    scrollbar-width: thin;
+    scrollbar-color: $color-slate-500 transparent;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-slate-500;
+      border-radius: $radius-full;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+
+  &__track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-block: auto;
   }
 
   &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+    height: $nav-item-height;
+    text-align: center;
     font-family: $font-ui;
     font-weight: $font-weight-medium;
-    font-size: $text-small;
     text-decoration: none;
-    color: $color-slate-900;
-    @include highlighter-swipe;
+    color: $color-slate-700;
+    white-space: nowrap;
+    transition: font-size 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.35s ease-out,
+      opacity 0.35s ease-out,
+      font-weight 0.35s ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: color 0.2s ease-out, opacity 0.2s ease-out;
+    }
+
+    &[data-distance='0'] {
+      font-size: $text-h3;
+      font-weight: $font-weight-semibold;
+      color: $color-ink;
+      opacity: 1;
+    }
+
+    &[data-distance='1'] {
+      font-size: $text-h4;
+      opacity: 0.72;
+    }
+
+    &[data-distance='2'] {
+      font-size: $text-small;
+      opacity: 0.48;
+    }
+
+    &[data-distance='3'] {
+      font-size: $text-small;
+      opacity: 0.28;
+    }
 
     &--active {
       color: $color-ink;
     }
+
+    &:hover {
+      color: $color-ink;
+      opacity: 1;
+    }
+  }
+}
+
+// Mobile: compact top bar
+.side-nav-mobile {
+  position: sticky;
+  top: 0;
+  z-index: $z-nav;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  padding: $space-4 $space-6;
+  border-bottom: $border-default;
+  background-color: color-mix(in srgb, var(--color-paper) 92%, transparent);
+  backdrop-filter: blur(10px);
+  transition: background-color $transition-theme, border-color $transition-theme,
+    backdrop-filter $transition-theme;
+
+  @include respond-to(md) {
+    display: none;
+  }
+
+  &--home {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+  }
+
+  &__brand {
+    font-family: $font-ui;
+    font-weight: $font-weight-bold;
+    font-size: $text-h4;
+    text-decoration: none;
+    color: $color-ink;
+  }
+
+  &__current {
+    @include type-small;
+    color: $color-slate-700;
+    font-family: $font-ui;
+    font-weight: $font-weight-medium;
   }
 }

@@ -27,9 +27,13 @@
 
   &__links {
     display: flex;
+    align-items: center;
     gap: $space-6;
 
     a {
+      display: inline-flex;
+      align-items: center;
+      gap: $space-2;
       @include type-small;
       font-family: $font-ui;
       font-weight: $font-weight-medium;

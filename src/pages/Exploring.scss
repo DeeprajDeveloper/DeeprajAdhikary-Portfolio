@@ -1,0 +1,46 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.exploring-grid {
+  display: grid;
+  gap: $space-5;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.exploring-card {
+  padding: $space-6;
+  background-color: $color-surface;
+  border: $border-width solid $color-border-subtle;
+  border-radius: $radius-lg;
+  transition: border-color $duration-normal $ease-out;
+
+  &:hover {
+    border-color: $color-ink;
+  }
+}
+
+.exploring-card__icon {
+  color: $color-ink;
+  margin-bottom: $space-4;
+}
+
+.exploring-card__label {
+  font-family: $font-display;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  margin-bottom: $space-3;
+}
+
+.exploring-card__description {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}

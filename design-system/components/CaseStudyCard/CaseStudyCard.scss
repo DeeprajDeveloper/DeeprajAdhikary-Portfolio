@@ -5,10 +5,11 @@
   border: $border-default;
   border-radius: $radius-card;
   box-shadow: $shadow-soft;
-  transition: box-shadow $transition-fast, transform $transition-fast;
+  transition: box-shadow $transition-fast, transform $transition-fast,
+    background-color $transition-theme, border-color $transition-theme;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(17, 17, 17, 0.08);
+    box-shadow: $shadow-elevated;
     transform: translateY(-2px);
   }
 

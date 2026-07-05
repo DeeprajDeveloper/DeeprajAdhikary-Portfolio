@@ -1,3 +1,4 @@
+@forward 'variables';
 @use 'variables' as *;
 
 @mixin highlighter-swipe {
@@ -35,8 +36,8 @@
 }
 
 @mixin type-display {
-  font-family: $font-display;
-  font-style: italic;
+  font-family: $font-ui;
+  // font-style: italic;
   font-weight: $font-weight-regular;
   font-size: $text-display;
   line-height: $leading-display;
@@ -119,5 +120,29 @@
     @media (min-width: $breakpoint-xl) {
       @content;
     }
+  }
+}
+
+@mixin container {
+  @include page-container;
+}
+
+@mixin prose {
+  @include type-body;
+  color: $color-slate-900;
+}
+
+@mixin label-caps {
+  font-family: $font-ui;
+  font-size: $text-small;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-slate-700;
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
   }
 }

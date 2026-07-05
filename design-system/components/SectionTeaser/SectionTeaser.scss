@@ -1,0 +1,39 @@
+@use '../../styles/mixins' as *;
+
+.section-teaser {
+  padding: $space-8;
+  background-color: $color-slate-100;
+  border: $border-default;
+  border-radius: $radius-card;
+  box-shadow: $shadow-soft;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-teaser__eyebrow {
+  @include label-caps;
+  margin-bottom: $space-3;
+}
+
+.section-teaser__title {
+  @include type-h3;
+  margin-bottom: $space-3;
+}
+
+.section-teaser__description {
+  @include type-body;
+  color: $color-slate-900;
+  flex: 1;
+}
+
+.section-teaser__link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  @include type-small;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  margin-top: $space-5;
+  @include highlighter-swipe;
+}

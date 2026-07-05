@@ -1,0 +1,22 @@
+@use '../../styles/mixins' as *;
+
+.page-header {
+  @include content-column;
+  margin-bottom: $space-12;
+}
+
+.page-header__eyebrow {
+  @include label-caps;
+  margin-bottom: $space-3;
+}
+
+.page-header__title {
+  @include type-h1;
+  letter-spacing: $letter-spacing-tight;
+}
+
+.page-header__description {
+  @include type-body;
+  color: $color-slate-900;
+  margin-top: $space-5;
+}
