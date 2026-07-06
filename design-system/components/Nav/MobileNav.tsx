@@ -6,16 +6,12 @@ import './Nav.scss';
 
 export function MobileNav() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
   const activeIndex = matchNavIndex(location.pathname);
 
   const currentLabel = navLinks[activeIndex]?.label ?? 'Home';
 
   return (
-    <header
-      className={`side-nav-mobile ${isHome ? 'side-nav-mobile--home' : ''}`}
-      aria-label="Mobile navigation"
-    >
+    <header className="side-nav-mobile" aria-label="Mobile navigation">
       <Link to="/" className="side-nav-mobile__brand">
         {site.name.split(' ')[0]}
       </Link>

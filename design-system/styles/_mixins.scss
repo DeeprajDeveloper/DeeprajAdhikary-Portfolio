@@ -92,6 +92,13 @@
   line-height: $leading-small;
 }
 
+@mixin type-xsmall {
+  font-family: $font-body;
+  font-weight: $font-weight-regular;
+  font-size: $text-xsmall;
+  line-height: $leading-small;
+}
+
 @mixin page-container {
   width: 100%;
   max-width: $page-max-width;
@@ -134,7 +141,7 @@
 
 @mixin label-caps {
   font-family: $font-ui;
-  font-size: $text-small;
+  font-size: $text-xsmall;
   font-weight: $font-weight-semibold;
   letter-spacing: 0.06em;
   text-transform: uppercase;

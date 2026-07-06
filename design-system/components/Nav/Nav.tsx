@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { site, navLinks } from '@data/site';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
+import { Footer } from '../Footer/Footer';
 import { matchNavIndex } from '@/hooks/useScrollNav';
 import './Nav.scss';
 
@@ -60,15 +61,11 @@ export function Nav() {
   };
 
   return (
-    <aside
-      className={`side-nav ${isHome ? 'side-nav--home' : ''}`}
-      aria-label="Site navigation"
-    >
+    <aside className="side-nav" aria-label="Site navigation">
       <div className="side-nav__header">
         <Link to="/" className="side-nav__brand" onClick={() => handleNavClick(0)}>
           {site.name}
         </Link>
-        <ThemeToggle />
       </div>
 
       <div ref={viewportRef} className="side-nav__viewport">
@@ -94,6 +91,11 @@ export function Nav() {
             );
           })}
         </nav>
+      </div>
+
+      <div className="side-nav__footer">
+        <ThemeToggle variant="nav" />
+        <Footer variant="nav" />
       </div>
     </aside>
   );

@@ -3,7 +3,7 @@ import { thinkingStages } from '@data/thinking';
 import { usePageTitle } from '@/hooks/usePageTitle';
 
 export function HowIThinkPage() {
-  usePageTitle('How I Think');
+  usePageTitle('My thinking process');
 
   return (
     <div className="inner-page">

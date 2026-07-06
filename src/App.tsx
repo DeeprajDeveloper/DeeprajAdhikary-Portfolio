@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Nav, MobileNav, Footer, ClickSpark } from '@design-system/index';
+import { PageTransition } from '@/components/PageTransition/PageTransition';
 import { HomePage } from '@/pages/Home';
 import { HowIThinkPage } from '@/pages/HowIThink';
 import { PerspectivesPage } from '@/pages/Perspectives';
@@ -27,21 +28,23 @@ export default function App() {
         duration={400}
       >
         <main className="page__main">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/how-i-think" element={<HowIThinkPage />} />
-            <Route path="/perspectives" element={<PerspectivesPage />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-            <Route path="/artifacts" element={<ArtifactsPage />} />
-            <Route path="/lessons" element={<LessonsPage />} />
-            <Route path="/exploring" element={<ExploringPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/how-i-think" element={<HowIThinkPage />} />
+              <Route path="/perspectives" element={<PerspectivesPage />} />
+              <Route path="/case-studies" element={<CaseStudiesPage />} />
+              <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+              <Route path="/artifacts" element={<ArtifactsPage />} />
+              <Route path="/lessons" element={<LessonsPage />} />
+              <Route path="/exploring" element={<ExploringPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </PageTransition>
         </main>
-        <Footer />
+        <Footer variant="page" />
       </ClickSpark>
     </div>
   );

@@ -35,4 +35,9 @@ export const exploringTopics: ExploringTopic[] = [
     label: 'Product thinking',
     description: 'Connecting technical decisions to user outcomes and business value.',
   },
+  {
+    id: 'ui-ux-design',
+    label: 'UI/UX design',
+    description: 'Designing interfaces that are not only functional but also delightful to use.',
+  },
 ];

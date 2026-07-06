@@ -1,44 +1,79 @@
 @use '../../styles/mixins' as *;
 
 .site-footer {
-  border-top: $border-default;
-  background-color: $color-paper;
-  margin-top: $space-24;
-
-  &__inner {
+  &--page {
+    margin-top: $space-24;
+    padding-block: $space-8 $space-12;
     @include page-container;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: $space-4;
-    padding-block: $space-4;
+    text-align: center;
 
     @include respond-to(md) {
-      flex-direction: row;
+      display: none;
+    }
+  }
+
+  &--nav {
+    display: none;
+    width: 100%;
+
+    @include respond-to(md) {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      gap: $space-4;
+      text-align: center;
     }
   }
 
   &__copy {
     @include type-small;
-    color: $color-slate-900;
+    color: $color-slate-700;
     margin: 0;
+    line-height: $leading-small;
+  }
+
+  &--nav &__copy {
+    font-size: 0.75rem;
+    max-width: 14rem;
   }
 
   &__links {
     display: flex;
     align-items: center;
-    gap: $space-6;
+    justify-content: center;
+    gap: $space-3;
+  }
 
-    a {
-      display: inline-flex;
-      align-items: center;
-      gap: $space-2;
-      @include type-small;
-      font-family: $font-ui;
-      font-weight: $font-weight-medium;
-      text-decoration: none;
-      @include highlighter-swipe;
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: $radius-sm;
+    color: $color-slate-700;
+    text-decoration: none;
+    transition: color $transition-fast, background-color $transition-fast,
+      transform $transition-fast;
+    @include focus-ring;
+
+    &:hover {
+      color: $color-ink;
+      background-color: color-mix(in srgb, var(--color-slate-300) 55%, transparent);
+      transform: translateY(-1px);
     }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--nav &__link {
+    width: 2rem;
+    height: 2rem;
   }
 }

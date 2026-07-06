@@ -153,9 +153,12 @@
   }
 
   &__scroll-cue-text {
-    @include type-body;
-    color: $color-slate-900;
+    @include type-xsmall;
+    font-family: $font-ui;
     font-weight: $font-weight-medium;
+    color: $color-slate-700;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
   }
 
   &__scroll-icon {

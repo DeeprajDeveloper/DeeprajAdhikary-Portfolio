@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ArrowFatLinesDownIcon } from '@phosphor-icons/react';
 import { features } from '@config/features';
 import { hero } from '@data/hero';
 import { Button } from '../Button/Button';
@@ -30,6 +31,14 @@ export function Hero() {
     lensesTypewriterEnabled && lensesHovered
       ? typedPerspective
       : hero.headlineInteractive;
+
+  const scrollToContent = () => {
+    document.getElementById('perspectives')?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+    });
+  };
 
   return (
     <section className="hero" id="home" aria-labelledby="hero-heading">
@@ -77,6 +86,16 @@ export function Hero() {
           </Button>
         </div>
       </div>
+
+      <button
+        type="button"
+        className="hero__scroll-cue"
+        onClick={scrollToContent}
+        aria-label="Scroll to know more"
+      >
+        <span className="hero__scroll-cue-text">Scroll to explore</span>
+        <ArrowFatLinesDownIcon className="hero__scroll-icon" size={20} weight="regular" aria-hidden="true" />
+      </button>
     </section>
   );
 }

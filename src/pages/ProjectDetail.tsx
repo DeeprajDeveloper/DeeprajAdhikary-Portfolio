@@ -1,5 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { PageHeader, PlaceholderBanner, ContentSection } from '@design-system/index';
+import { PageHeader, BackLink, PlaceholderBanner, ContentSection } from '@design-system/index';
 import { getProjectBySlug } from '@data/projects';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import './Projects.scss';
@@ -26,6 +26,7 @@ export function ProjectDetailPage() {
   return (
     <div className="inner-page">
       <div className="inner-page__container inner-page__container--wide">
+        <BackLink to="/projects" label="Projects" />
         <PageHeader
           eyebrow="Project"
           title={project.title}

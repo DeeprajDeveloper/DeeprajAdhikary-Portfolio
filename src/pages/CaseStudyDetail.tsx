@@ -1,5 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { PageHeader, PlaceholderBanner, ContentSection } from '@design-system/index';
+import { PageHeader, BackLink, PlaceholderBanner, ContentSection } from '@design-system/index';
 import { getCaseStudyBySlug, caseStudySections } from '@data/case-studies';
 import { usePageTitle } from '@/hooks/usePageTitle';
 
@@ -16,6 +16,7 @@ export function CaseStudyDetailPage() {
   return (
     <div className="inner-page">
       <div className="inner-page__container inner-page__container--wide">
+        <BackLink to="/case-studies" label="Case Studies" />
         <PageHeader
           eyebrow={study.topic}
           title={study.title}

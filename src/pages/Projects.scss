@@ -31,7 +31,7 @@
 }
 
 .project-card__title {
-  font-family: $font-display;
+  font-family: $font-ui;
   font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   color: $color-text;
@@ -47,7 +47,7 @@
   display: inline-flex;
   align-items: center;
   gap: $space-2;
-  font-family: $font-display;
+  font-family: $font-ui;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   color: $color-accent;

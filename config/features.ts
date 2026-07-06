@@ -9,6 +9,8 @@
 const defaults = {
   /** Hover typewriter on "three complementary lenses" in the hero headline */
   heroLensesTypewriter: true,
+  /** Logo scale transition when navigating between pages */
+  pageTransitions: true,
 } as const;
 
 function envFlag(value: string | undefined, defaultValue: boolean): boolean {
@@ -20,6 +22,10 @@ export const features = {
   heroLensesTypewriter: envFlag(
     import.meta.env.VITE_FEATURE_HERO_LENSES_TYPEWRITER,
     defaults.heroLensesTypewriter,
+  ),
+  pageTransitions: envFlag(
+    import.meta.env.VITE_FEATURE_PAGE_TRANSITIONS,
+    defaults.pageTransitions,
   ),
 } as const;
 

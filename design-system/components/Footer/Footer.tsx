@@ -1,32 +1,45 @@
-import { ArrowSquareOut } from '@phosphor-icons/react';
+import { FilePdf, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
+import type { Icon } from '@phosphor-icons/react';
 import { site, footerLinks } from '@data/site';
 import './Footer.scss';
 
-export function Footer() {
+interface FooterProps {
+  variant?: 'nav' | 'page';
+}
+
+const footerIcons: Record<(typeof footerLinks)[number]['label'], Icon> = {
+  LinkedIn: LinkedinLogo,
+  GitHub: GithubLogo,
+  Resume: FilePdf,
+};
+
+export function Footer({ variant = 'page' }: FooterProps) {
   const year = new Date().getFullYear();
+  const iconSize = variant === 'nav' ? 22 : 24;
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer__inner">
-        <p className="site-footer__copy">
-          &copy; {year} {site.fullName} — Systems thinking across BA, Dev, and QE
-        </p>
+    <footer className={`site-footer site-footer--${variant}`}>
+      <p className="site-footer__copy">
+        &copy; {year} {site.fullName}
+      </p>
 
-        <nav className="site-footer__links" aria-label="Footer links">
-          {footerLinks.map((link) => (
+      <nav className="site-footer__links" aria-label="Footer links">
+        {footerLinks.map((link) => {
+          const IconComponent = footerIcons[link.label];
+
+          return (
             <a
               key={link.label}
               href={link.href}
+              className="site-footer__link"
+              aria-label={link.label}
               {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
-              {link.label}
-              {link.external && (
-                <ArrowSquareOut size={12} weight="bold" aria-hidden="true" />
-              )}
+              <IconComponent size={iconSize} weight="regular" aria-hidden="true" />
             </a>
-          ))}
-        </nav>
-      </div>
+          );
+        })}
+      </nav>
     </footer>
   );
 }

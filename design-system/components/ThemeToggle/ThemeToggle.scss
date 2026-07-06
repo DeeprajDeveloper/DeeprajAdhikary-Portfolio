@@ -47,4 +47,25 @@
       transform: rotate(0deg) scale(1);
     }
   }
+
+  &--nav {
+    width: 100%;
+    height: $nav-item-height;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    gap: $space-2;
+    font-family: $font-ui;
+    font-weight: $font-weight-medium;
+    font-size: $text-small;
+    color: $color-slate-700;
+    transition: color 0.35s ease-out, opacity 0.35s ease-out;
+
+    &:hover {
+      background: transparent;
+      color: $color-ink;
+      opacity: 1;
+    }
+  }
 }

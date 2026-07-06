@@ -4,6 +4,7 @@ export { Footer } from './components/Footer/Footer';
 export { Button } from './components/Button/Button';
 export { Tag } from './components/Tag/Tag';
 export { PageHeader } from './components/PageHeader/PageHeader';
+export { BackLink } from './components/BackLink/BackLink';
 export { PlaceholderBanner } from './components/PlaceholderBanner/PlaceholderBanner';
 export { Hero } from './components/Hero/Hero';
 export { CaseStudyCard } from './components/CaseStudyCard/CaseStudyCard';
