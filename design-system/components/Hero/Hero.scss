@@ -79,12 +79,11 @@
 
   &__lenses {
     display: inline-block;
-    min-width: 27ch;
+    min-width: 20ch;
     text-align: center;
     vertical-align: baseline;
     cursor: default;
     outline: none;
-    white-space: nowrap;
 
     &:hover,
     &:focus-visible {
@@ -92,29 +91,18 @@
     }
   }
 
-  &__lenses-line {
-    display: inline-flex;
-    align-items: baseline;
-    justify-content: center;
-    width: 100%;
-    white-space: nowrap;
-  }
-
   &__lenses-text {
-    display: inline-block;
-    min-width: calc(27ch - 4px);
-    text-align: center;
+    display: inline;
   }
 
   &__lenses-cursor {
     display: inline-block;
     width: 2px;
     height: 0.85em;
-    margin-left: 2px;
+    margin-left: 1px;
+    vertical-align: baseline;
     background-color: $color-ink;
     animation: hero-cursor-blink 0.9s step-end infinite;
-    flex-shrink: 0;
-    vertical-align: baseline;
 
     @media (prefers-reduced-motion: reduce) {
       animation: none;

@@ -23,7 +23,7 @@ export function SectionTeaser({
       <h2 className="section-teaser__title">{title}</h2>
       <p className="section-teaser__description">{description}</p>
       <Link to={href} className="section-teaser__link">
-        {linkLabel} <ArrowRight size={14} weight="bold" aria-hidden="true" />
+        {linkLabel} <ArrowRight size={14} weight="duotone" aria-hidden="true" />
       </Link>
     </div>
   );

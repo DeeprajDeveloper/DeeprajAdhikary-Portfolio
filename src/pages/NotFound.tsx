@@ -14,7 +14,7 @@ export function NotFoundPage() {
           description="The page you are looking for does not exist or has been moved."
         />
         <Button href="/" variant="primary">
-          <House size={18} weight="bold" aria-hidden="true" />
+          <House size={18} weight="duotone" aria-hidden="true" />
           Back to home
         </Button>
       </div>

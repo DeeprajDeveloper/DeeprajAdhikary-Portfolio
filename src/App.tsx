@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Nav, MobileNav, Footer, ClickSpark } from '@design-system/index';
 import { PageTransition } from '@/components/PageTransition/PageTransition';
+import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { HomePage } from '@/pages/Home';
 import { HowIThinkPage } from '@/pages/HowIThink';
 import { PerspectivesPage } from '@/pages/Perspectives';
@@ -14,8 +16,11 @@ import { ExploringPage } from '@/pages/Exploring';
 import { NotFoundPage } from '@/pages/NotFound';
 
 export default function App() {
+  useKeyboardShortcuts();
+
   return (
     <div className="page">
+      <ScrollToTop />
       <div className="page__grid" aria-hidden="true" />
       <Nav />
       <MobileNav />

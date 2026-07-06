@@ -35,7 +35,7 @@ export function Footer({ variant = 'page' }: FooterProps) {
               aria-label={link.label}
               {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
-              <IconComponent size={iconSize} weight="regular" aria-hidden="true" />
+              <IconComponent size={iconSize} weight="duotone" aria-hidden="true" />
             </a>
           );
         })}

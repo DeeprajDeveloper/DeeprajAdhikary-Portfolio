@@ -26,7 +26,7 @@ export function ProjectsPage() {
               </div>
               <p className="project-card__tagline">{project.tagline}</p>
               <span className="project-card__cta">
-                View project <ArrowRight size={14} weight="bold" aria-hidden="true" />
+                View project <ArrowRight size={14} weight="duotone" aria-hidden="true" />
               </span>
             </Link>
           ))}

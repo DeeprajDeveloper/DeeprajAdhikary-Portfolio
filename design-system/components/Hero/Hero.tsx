@@ -94,7 +94,7 @@ export function Hero() {
         aria-label="Scroll to know more"
       >
         <span className="hero__scroll-cue-text">Scroll to explore</span>
-        <ArrowFatLinesDownIcon className="hero__scroll-icon" size={20} weight="regular" aria-hidden="true" />
+        <ArrowFatLinesDownIcon className="hero__scroll-icon" size={20} weight="duotone" aria-hidden="true" />
       </button>
     </section>
   );

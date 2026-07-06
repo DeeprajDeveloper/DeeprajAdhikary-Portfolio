@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { site, navLinks } from '@data/site';
+import { navShortcuts } from '@data/shortcuts';
+import { features } from '@config/features';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 import { Footer } from '../Footer/Footer';
 import { matchNavIndex } from '@/hooks/useScrollNav';
@@ -14,6 +16,8 @@ export function Nav() {
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const activeIndex = isHome ? (clickedIndex ?? 0) : matchNavIndex(location.pathname);
+  const showShortcutLabels = features.shortcutLabels;
+  const showShortcutKeys = features.shortcutKeys;
 
   const scrollActiveLinkToCenter = useCallback(() => {
     const viewport = viewportRef.current;
@@ -84,9 +88,20 @@ export function Nav() {
                 className={`side-nav__link ${isActive ? 'side-nav__link--active' : ''}`}
                 data-distance={Math.min(distance, 3)}
                 aria-current={isActive ? 'page' : undefined}
+                {...(showShortcutKeys
+                  ? { 'aria-keyshortcuts': navShortcuts[index].key }
+                  : {})}
+                title={
+                  showShortcutLabels
+                    ? `${link.label} (${navShortcuts[index].key})`
+                    : link.label
+                }
                 onClick={() => handleNavClick(index)}
               >
-                {link.label}
+                <span className="side-nav__link-label">{link.label}</span>
+                {showShortcutLabels && (
+                  <kbd className="side-nav__shortcut">{navShortcuts[index].key}</kbd>
+                )}
               </Link>
             );
           })}

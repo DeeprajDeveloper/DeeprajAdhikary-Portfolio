@@ -68,4 +68,18 @@
       opacity: 1;
     }
   }
+
+  &__shortcut {
+    font-family: $font-ui;
+    font-size: 0.625rem;
+    font-weight: $font-weight-medium;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: $radius-sm;
+    border: 1px solid $color-slate-500;
+    color: $color-slate-700;
+    background-color: color-mix(in srgb, var(--color-slate-100) 70%, transparent);
+    opacity: 0.7;
+    pointer-events: none;
+  }
 }

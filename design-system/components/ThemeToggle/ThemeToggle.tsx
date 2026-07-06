@@ -1,4 +1,6 @@
-import { Moon, Sun } from '@phosphor-icons/react';
+import { MoonIcon, SunIcon } from '@phosphor-icons/react';
+import { features } from '@config/features';
+import { themeShortcut } from '@data/shortcuts';
 import { useTheme } from '../../context/ThemeContext';
 import { runThemeTransition } from '../../utils/themeTransition';
 import './ThemeToggle.scss';
@@ -11,6 +13,9 @@ export function ThemeToggle({ variant = 'default' }: ThemeToggleProps) {
   const { theme, setTheme } = useTheme();
   const isDark = theme === 'dark';
   const label = isDark ? 'Light mode' : 'Dark mode';
+  const showShortcutLabels = features.shortcutLabels;
+  const showShortcutKeys = features.shortcutKeys;
+  const ariaLabel = isDark ? 'Switch to light mode' : 'Switch to dark mode';
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     runThemeTransition(event, () => {
@@ -24,14 +29,19 @@ export function ThemeToggle({ variant = 'default' }: ThemeToggleProps) {
         type="button"
         className="theme-toggle theme-toggle--nav"
         onClick={handleClick}
-        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        aria-label={ariaLabel}
+        {...(showShortcutKeys ? { 'aria-keyshortcuts': 'Shift+T' } : {})}
+        title={showShortcutLabels ? `${label} (${themeShortcut.label})` : label}
       >
         {isDark ? (
-          <Sun size={18} weight="regular" aria-hidden="true" />
+          <SunIcon size={18} weight="duotone" aria-hidden="true" />
         ) : (
-          <Moon size={18} weight="regular" aria-hidden="true" />
+          <MoonIcon size={18} weight="duotone" aria-hidden="true" />
         )}
         <span>{label}</span>
+        {showShortcutLabels && (
+          <kbd className="theme-toggle__shortcut">{themeShortcut.label}</kbd>
+        )}
       </button>
     );
   }
@@ -41,19 +51,20 @@ export function ThemeToggle({ variant = 'default' }: ThemeToggleProps) {
       type="button"
       className="theme-toggle"
       onClick={handleClick}
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      title={label}
+      aria-label={ariaLabel}
+      {...(showShortcutKeys ? { 'aria-keyshortcuts': 'Shift+T' } : {})}
+      title={showShortcutLabels ? `${label} (${themeShortcut.label})` : label}
     >
-      <Sun
-        className="theme-toggle__icon theme-toggle__icon--sun"
+      <SunIcon
+        className="theme-toggle__icon theme-toggle__icon--SunIcon"
         size={18}
-        weight="regular"
+        weight="duotone"
         aria-hidden="true"
       />
-      <Moon
-        className="theme-toggle__icon theme-toggle__icon--moon"
+      <MoonIcon
+        className="theme-toggle__icon theme-toggle__icon--MoonIcon"
         size={18}
-        weight="regular"
+        weight="duotone"
         aria-hidden="true"
       />
     </button>

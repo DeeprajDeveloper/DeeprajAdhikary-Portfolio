@@ -44,7 +44,7 @@
     border-color: $color-button-secondary-border;
 
     &:hover:not(:disabled) {
-      background-color: $color-slate-300;
+      background-color: $color-button-secondary-hover;
       color: $color-button-secondary-text;
     }
   }
