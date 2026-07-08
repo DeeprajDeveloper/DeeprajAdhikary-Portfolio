@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as *;
+
+.placeholder-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-4 $space-5;
+  border-radius: $radius-card;
+  border: $border-default;
+  border-left: 4px solid $color-mustard;
+  background-color: color-mix(in srgb, var(--color-mustard) 12%, transparent);
+  margin-bottom: $space-8;
+}
+
+.placeholder-banner__icon {
+  flex-shrink: 0;
+  color: $color-mustard;
+}
+
+.placeholder-banner__text {
+  @include type-small;
+  color: $color-ink;
+}

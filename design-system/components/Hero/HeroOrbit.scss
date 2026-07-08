@@ -1,0 +1,136 @@
+@use '../../styles/mixins' as *;
+
+.hero-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  &__svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  &__ring {
+    fill: none;
+    stroke: color-mix(in srgb, var(--color-slate-500) 55%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 6 10;
+  }
+
+  &__orb {
+    position: absolute;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    width: 148px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-2;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: grab;
+    pointer-events: auto;
+    touch-action: none;
+    @include focus-ring;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__orb-icon-wrap {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--color-paper) 88%, transparent);
+    border: 2px solid transparent;
+    transition:
+      transform $transition-fast,
+      box-shadow $transition-fast,
+      border-color $transition-fast;
+  }
+
+  &__orb-icon {
+    color: $color-ink;
+  }
+
+  &__orb-label {
+    @include type-small;
+    font-family: $font-ui;
+    font-weight: $font-weight-semibold;
+    color: $color-ink;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  &__orb-tagline {
+    @include type-xsmall;
+    color: $color-slate-700;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 11rem;
+  }
+
+  &__orb--ba &__orb-icon-wrap {
+    border-color: color-mix(in srgb, var(--color-mustard) 70%, transparent);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--color-mustard) 28%, transparent);
+
+    .hero-orbit__orb-icon {
+      color: $color-mustard;
+    }
+  }
+
+  &__orb--dev &__orb-icon-wrap {
+    border-color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--color-ink) 18%, transparent);
+  }
+
+  &__orb--qe &__orb-icon-wrap {
+    border-color: color-mix(in srgb, var(--color-signal-green) 70%, transparent);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--color-signal-green) 28%, transparent);
+
+    .hero-orbit__orb-icon {
+      color: $color-signal-green;
+    }
+  }
+
+  &__orb:hover &__orb-icon-wrap,
+  &__orb:focus-visible &__orb-icon-wrap {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 900px) {
+    &__orb {
+      width: 120px;
+    }
+
+    &__orb-icon-wrap {
+      width: 72px;
+      height: 72px;
+    }
+
+    &__orb-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    &__orb-tagline {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    opacity: 0.55;
+
+    &__orb-label {
+      font-size: $text-xsmall;
+    }
+  }
+}

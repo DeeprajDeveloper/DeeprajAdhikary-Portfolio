@@ -1,0 +1,28 @@
+@use '../../styles/mixins' as *;
+
+.callout {
+  padding: $space-6;
+  border-radius: $radius-card;
+  border: $border-default;
+  margin: $space-6 0;
+
+  &--intern {
+    background-color: color-mix(in srgb, var(--color-mustard) 12%, transparent);
+    border-left: 4px solid $color-mustard;
+  }
+
+  &--reflection {
+    background-color: $color-slate-100;
+    border-left: 4px solid $color-slate-500;
+  }
+
+  &__label {
+    @include type-h4;
+    margin-bottom: $space-3;
+  }
+
+  &__body {
+    @include type-body;
+    color: $color-ink;
+  }
+}

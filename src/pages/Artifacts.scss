@@ -1,0 +1,51 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.artifacts-grid {
+  display: grid;
+  gap: $space-5;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.artifact-card {
+  padding: $space-6;
+  background-color: $color-surface;
+  border: $border-width solid $color-border-subtle;
+  border-radius: $radius-lg;
+}
+
+.artifact-card__icon {
+  color: $color-ink;
+  margin-bottom: $space-4;
+}
+
+.artifact-card__type {
+  @include label-caps;
+  display: block;
+  margin-bottom: $space-3;
+}
+
+.artifact-card__title {
+  font-family: $font-ui;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  margin-bottom: $space-2;
+}
+
+.artifact-card__description {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}
+
+.artifact-card__status {
+  display: inline-block;
+  font-size: $font-size-xs;
+  color: $color-ink;
+  margin-top: $space-4;
+  font-family: $font-mono;
+}

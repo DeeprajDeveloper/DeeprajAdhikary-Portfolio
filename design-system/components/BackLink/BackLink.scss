@@ -1,0 +1,51 @@
+@use '../../styles/mixins' as *;
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-6;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  font-size: $text-small;
+  color: $color-slate-700;
+  text-decoration: none;
+  @include focus-ring;
+
+  &:hover {
+    color: $color-ink;
+  }
+
+  &:hover .back-link__text,
+  &:focus-visible .back-link__text {
+    color: $color-ink;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+  }
+
+  &__text {
+    @include type-small;
+    font-family: $font-ui;
+    font-weight: $font-weight-medium;
+    @include highlighter-swipe;
+  }
+
+  &:focus-visible &__text::after {
+    transform: scaleX(1);
+  }
+
+  &__external {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $space-4;
+    height: $space-4;
+  }
+
+  &__external svg {
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+@use '../../styles/mixins' as *;
+
+.page-header {
+  @include content-column;
+  margin-bottom: $space-12;
+}
+
+.page-header__eyebrow {
+  @include label-caps;
+  margin-bottom: $space-3;
+}
+
+.page-header__title {
+  @include type-h1;
+  letter-spacing: $letter-spacing-tight;
+}
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-top: $space-5;
+}
+
+.page-header__description {
+  @include type-body;
+  color: $color-slate-900;
+  margin-top: $space-5;
+}

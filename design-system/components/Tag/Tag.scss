@@ -1,0 +1,46 @@
+@use '../../styles/mixins' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  font-size: $text-small;
+  line-height: 1.4;
+  padding: $space-1 $space-3;
+  border-radius: $radius-sm;
+  border: $border-default;
+  white-space: nowrap;
+  background-color: $color-paper;
+
+  &--skill {
+    background-color: $color-highlighter-yellow;
+    color: var(--color-skilltag-text);
+    border-color: transparent;
+  }
+
+  &--ba {
+    background-color: $color-highlighter-yellow;
+    color: var(--color-skilltag-text);
+    border-color: transparent;
+  }
+
+  &--dev {
+    background-color: $color-ink;
+    color: $color-paper;
+    border-color: transparent;
+  }
+
+  &--qe {
+    background-color: $color-signal-green;
+    color: $color-paper;
+    border-color: transparent;
+  }
+
+  &--stack {
+    background-color: $color-slate-100;
+    color: $color-slate-900;
+    font-family: $font-code;
+    font-size: 0.8125rem;
+  }
+}

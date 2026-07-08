@@ -1,0 +1,87 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  padding: $space-8;
+  background-color: $color-surface;
+  border: $border-width solid $color-border-subtle;
+  border-radius: $radius-xl;
+  transition: border-color $duration-normal $ease-out,
+    box-shadow $duration-normal $ease-out;
+
+  &:hover {
+    border-color: $color-border;
+    box-shadow: $shadow-md;
+  }
+}
+
+.project-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-3;
+}
+
+.project-card__title {
+  font-family: $font-ui;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+}
+
+.project-card__tagline {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+}
+
+.project-card__hint {
+  font-family: $font-ui;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  margin-bottom: 0;
+}
+
+.project-card__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2;
+  font-family: $font-ui;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+}
+
+.project-card__external {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  font-family: $font-ui;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  text-decoration: none;
+
+  @include highlighter-swipe;
+}
+
+.project-sections {
+  margin-top: $space-4;
+}

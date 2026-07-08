@@ -1,0 +1,45 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.lesson-card {
+  display: flex;
+  gap: $space-6;
+  padding: $space-8;
+  background-color: $color-surface;
+  border: $border-width solid $color-border-subtle;
+  border-radius: $radius-xl;
+}
+
+.lesson-card__number {
+  font-family: $font-mono;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-mustard;
+  flex-shrink: 0;
+}
+
+.lesson-card__title {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  font-family: $font-ui;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  margin-bottom: $space-3;
+
+  svg {
+    color: $color-perspective-ba;
+    flex-shrink: 0;
+  }
+}
+
+.lesson-card__insight {
+  @include prose;
+}

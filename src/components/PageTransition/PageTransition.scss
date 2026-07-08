@@ -1,0 +1,130 @@
+@use '../../../design-system/styles/mixins' as *;
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: calc(#{$z-nav} - 1);
+  pointer-events: none;
+
+  &--cover,
+  &--reveal {
+    pointer-events: all;
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    will-change: width;
+    background-color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+    backdrop-filter: blur(12px);
+    border-right: $border-default;
+  }
+
+  &__logo {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    will-change: transform, opacity;
+  }
+
+  &--cover &__panel {
+    width: $side-nav-width;
+    animation: page-transition-panel-cover 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      animation-name: page-transition-panel-cover-mobile;
+    }
+  }
+
+  &--cover &__logo {
+    animation: page-transition-logo-in 0.18s ease both;
+  }
+
+  &--reveal &__panel {
+    width: 100vw;
+    animation: page-transition-panel-reveal 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      animation-name: page-transition-panel-reveal-mobile;
+    }
+  }
+
+  &--reveal &__logo {
+    animation: page-transition-logo-out 0.15s ease both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+
+@keyframes page-transition-panel-cover {
+  from {
+    width: $side-nav-width;
+  }
+
+  to {
+    width: 100vw;
+  }
+}
+
+@keyframes page-transition-panel-reveal {
+  from {
+    width: 100vw;
+  }
+
+  to {
+    width: $side-nav-width;
+  }
+}
+
+@keyframes page-transition-panel-cover-mobile {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100vw;
+  }
+}
+
+@keyframes page-transition-panel-reveal-mobile {
+  from {
+    width: 100vw;
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+@keyframes page-transition-logo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes page-transition-logo-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}

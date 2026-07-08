@@ -1,0 +1,89 @@
+@use '../../styles/mixins' as *;
+
+.thinking-flow {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.thinking-flow__stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.thinking-flow__stage {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border-radius: $radius-full;
+  border: $border-default;
+  background-color: $color-paper;
+  color: $color-slate-900;
+  font-family: $font-ui;
+  font-size: $text-small;
+  font-weight: $font-weight-medium;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-slate-100;
+    color: $color-ink;
+  }
+
+  &--active {
+    background-color: $color-ink;
+    border-color: $color-ink;
+    color: $color-paper;
+  }
+}
+
+.thinking-flow__stage-number {
+  font-size: $text-small;
+  opacity: 0.7;
+}
+
+.thinking-flow__connector {
+  display: none;
+
+  @include respond-to(md) {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding-inline: $space-2;
+  }
+}
+
+.thinking-flow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background-color: $color-slate-300;
+  transition: background-color $transition-fast;
+
+  &--filled {
+    background-color: $color-ink;
+  }
+}
+
+.thinking-flow__panel {
+  padding: $space-8;
+  background-color: $color-slate-100;
+  border: $border-default;
+  border-radius: $radius-card;
+  box-shadow: $shadow-soft;
+}
+
+.thinking-flow__panel-title {
+  @include type-h3;
+  margin-bottom: $space-4;
+}
+
+.thinking-flow__panel-summary {
+  @include type-h4;
+  margin-bottom: $space-4;
+}
+
+.thinking-flow__panel-detail {
+  @include prose;
+}
