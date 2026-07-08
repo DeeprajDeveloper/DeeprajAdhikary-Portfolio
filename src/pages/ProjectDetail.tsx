@@ -1,8 +1,9 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { PageHeader, BackLink, PlaceholderBanner, ContentSection } from '@design-system/index';
+import { PageHeader, BackLink, PlaceholderBanner, ContentSection, Button } from '@design-system/index';
 import { getProjectBySlug } from '@data/projects';
 import { usePageTitle } from '@/hooks/usePageTitle';
 import './Projects.scss';
+import { GithubLogoIcon, GlobeIcon } from '@phosphor-icons/react';
 
 const sectionLabels: Record<string, string> = {
   problem: 'The Problem',
@@ -31,6 +32,18 @@ export function ProjectDetailPage() {
           eyebrow="Project"
           title={project.title}
           description={project.tagline}
+          actions={
+            <>
+              <Button href={project.repoUrl} external variant="secondary" size="sm">
+              <GithubLogoIcon size={16} weight="duotone" aria-hidden="true" />
+                Git repo
+              </Button>
+              <Button href={project.liveUrl} external variant="secondary" size="sm">
+                <GlobeIcon size={16} weight="duotone" aria-hidden="true" />
+                Live website
+              </Button>
+            </>
+          }
         />
         <PlaceholderBanner message="HueType content is placeholder — fill in when ready." />
 

@@ -15,6 +15,8 @@ const defaults = {
   shortcutLabels: true,
   /** Keyboard shortcuts for nav (1–8) and theme toggle (Shift+T) */
   shortcutKeys: true,
+  /** Interactive perspective orbs in the hero */
+  heroOrbit: true,
 } as const;
 
 function envFlag(value: string | undefined, defaultValue: boolean): boolean {
@@ -38,6 +40,10 @@ export const features = {
   shortcutKeys: envFlag(
     import.meta.env.VITE_FEATURE_SHORTCUT_KEYS,
     defaults.shortcutKeys,
+  ),
+  heroOrbit: envFlag(
+    import.meta.env.VITE_FEATURE_HERO_ORBIT,
+    defaults.heroOrbit,
   ),
 } as const;
 

@@ -19,8 +19,9 @@
       "@/*": ["./src/*"],
       "@design-system/*": ["./design-system/*"],
       "@data/*": ["./data/*"],
-      "@config/*": ["./config/*"]
+      "@config/*": ["./config/*"],
+      "@constants/*": ["./constants/*"]
     }
   },
-  "include": ["src", "design-system", "data", "config", "vite.config.ts"]
+  "include": ["src", "design-system", "data", "config", "constants", "vite.config.ts"]
 }

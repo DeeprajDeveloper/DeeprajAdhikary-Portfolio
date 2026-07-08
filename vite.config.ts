@@ -13,6 +13,7 @@ export default defineConfig({
       '@design-system': path.resolve(__dirname, './design-system'),
       '@data': path.resolve(__dirname, './data'),
       '@config': path.resolve(__dirname, './config'),
+      '@constants': path.resolve(__dirname, './constants'),
     },
   },
   css: {

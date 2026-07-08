@@ -19,7 +19,7 @@ export const navLinks = [
 ] as const;
 
 export const footerLinks = [
-  { label: 'LinkedIn', href: '#', external: true },
-  { label: 'GitHub', href: '#', external: true },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/deepraj-adhikary/', external: true },
+  { label: 'GitHub', href: 'https://github.com/deeprajdeveloper', external: true },
   { label: 'Resume', href: '#', external: true },
 ] as const;

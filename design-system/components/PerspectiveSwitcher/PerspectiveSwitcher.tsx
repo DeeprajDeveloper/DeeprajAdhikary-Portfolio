@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import type { Perspective, PerspectiveId } from '@data/perspectives';
 import { Tag } from '../Tag/Tag';
@@ -12,8 +12,34 @@ interface PerspectiveSwitcherProps {
 
 export function PerspectiveSwitcher({ perspectives }: PerspectiveSwitcherProps) {
   const [activeId, setActiveId] = useState<PerspectiveId>('ba');
+  const [notchLeft, setNotchLeft] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const panelWrapRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef<Partial<Record<PerspectiveId, HTMLButtonElement>>>({});
   const active = perspectives.find((p) => p.id === activeId)!;
+
+  const updateNotchPosition = useCallback(() => {
+    const panelWrap = panelWrapRef.current;
+    const activeTab = tabRefs.current[activeId];
+    if (!panelWrap || !activeTab) return;
+
+    const panelRect = panelWrap.getBoundingClientRect();
+    const tabRect = activeTab.getBoundingClientRect();
+    setNotchLeft(tabRect.left + tabRect.width / 2 - panelRect.left);
+  }, [activeId]);
+
+  useEffect(() => {
+    updateNotchPosition();
+
+    window.addEventListener('resize', updateNotchPosition);
+    const observer = new ResizeObserver(updateNotchPosition);
+    if (panelWrapRef.current) observer.observe(panelWrapRef.current);
+
+    return () => {
+      window.removeEventListener('resize', updateNotchPosition);
+      observer.disconnect();
+    };
+  }, [updateNotchPosition]);
 
   return (
     <div className="perspective-switcher">
@@ -21,6 +47,9 @@ export function PerspectiveSwitcher({ perspectives }: PerspectiveSwitcherProps) 
         {perspectives.map((p) => (
           <button
             key={p.id}
+            ref={(element) => {
+              tabRefs.current[p.id] = element ?? undefined;
+            }}
             role="tab"
             aria-selected={activeId === p.id}
             aria-controls={`perspective-panel-${p.id}`}
@@ -33,7 +62,19 @@ export function PerspectiveSwitcher({ perspectives }: PerspectiveSwitcherProps) 
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
+      <div ref={panelWrapRef} className="perspective-switcher__panel-wrap">
+        <motion.div
+          className={`perspective-switcher__notch perspective-switcher__notch--${activeId}`}
+          animate={{ left: notchLeft }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }
+          }
+          aria-hidden="true"
+        />
+
+        <AnimatePresence mode="wait">
         <motion.div
           key={activeId}
           id={`perspective-panel-${activeId}`}
@@ -60,6 +101,7 @@ export function PerspectiveSwitcher({ perspectives }: PerspectiveSwitcherProps) 
           </div>
         </motion.div>
       </AnimatePresence>
+      </div>
     </div>
   );
 }

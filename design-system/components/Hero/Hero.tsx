@@ -3,6 +3,7 @@ import { ArrowFatLinesDownIcon } from '@phosphor-icons/react';
 import { features } from '@config/features';
 import { hero } from '@data/hero';
 import { Button } from '../Button/Button';
+import { HeroOrbit } from './HeroOrbit';
 import { useTypingRoles } from './useTypingRoles';
 import './Hero.scss';
 
@@ -42,6 +43,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="home" aria-labelledby="hero-heading">
+      {features.heroOrbit && <HeroOrbit />}
       <div className="hero__content">
         <span className="hero__eyebrow" aria-live="polite">
           <span className="hero__eyebrow-line">

@@ -10,10 +10,14 @@
   font-size: $text-small;
   color: $color-slate-700;
   text-decoration: none;
-  @include highlighter-swipe;
   @include focus-ring;
 
   &:hover {
+    color: $color-ink;
+  }
+
+  &:hover .back-link__text,
+  &:focus-visible .back-link__text {
     color: $color-ink;
   }
 
@@ -25,8 +29,11 @@
     @include type-small;
     font-family: $font-ui;
     font-weight: $font-weight-medium;
-    text-decoration: none;
     @include highlighter-swipe;
+  }
+
+  &:focus-visible &__text::after {
+    transform: scaleX(1);
   }
 
   &__external {

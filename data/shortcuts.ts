@@ -3,7 +3,7 @@ import { navLinks } from './site';
 export const themeShortcut = {
   key: 'T',
   shift: true,
-  label: '⇧T',
+  label: 'SHIFT + T',
 } as const;
 
 export const navShortcuts = navLinks.map((link, index) => ({

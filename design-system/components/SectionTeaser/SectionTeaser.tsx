@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from '@phosphor-icons/react';
 import './SectionTeaser.scss';
 
 interface SectionTeaserProps {
@@ -23,7 +22,7 @@ export function SectionTeaser({
       <h2 className="section-teaser__title">{title}</h2>
       <p className="section-teaser__description">{description}</p>
       <Link to={href} className="section-teaser__link">
-        {linkLabel} <ArrowRight size={14} weight="duotone" aria-hidden="true" />
+        {linkLabel}
       </Link>
     </div>
   );

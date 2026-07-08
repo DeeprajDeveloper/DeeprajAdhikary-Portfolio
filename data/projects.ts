@@ -3,6 +3,9 @@ export interface Project {
   title: string;
   tagline: string;
   status: 'active' | 'placeholder';
+  statusLabel: string;
+  repoUrl: string;
+  liveUrl: string;
   sections: {
     problem: string;
     motivation: string;
@@ -18,7 +21,10 @@ export const projects: Project[] = [
     slug: 'huetype',
     title: 'HueType',
     tagline: 'A personal project exploring design, interaction, and developer experience.',
-    status: 'placeholder',
+    status: 'active',
+    statusLabel: 'dev',
+    repoUrl: 'https://github.com/DeeprajDeveloper/HueType',
+    liveUrl: 'https://huetype.dev',
     sections: {
       problem: '[Placeholder — describe the problem HueType solves]',
       motivation: '[Placeholder — why you built it]',

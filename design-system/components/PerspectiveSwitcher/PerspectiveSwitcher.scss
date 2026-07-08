@@ -3,7 +3,7 @@
 .perspective-switcher {
   display: flex;
   flex-direction: column;
-  gap: $space-8;
+  gap: $space-5;
 }
 
 .perspective-switcher__tabs {
@@ -15,7 +15,7 @@
 .perspective-switcher__tab {
   padding: 0;
   border: none;
-  background: transparent;
+  background: $color-paper;
   cursor: pointer;
   border-radius: $radius-full;
   @include focus-ring;
@@ -27,6 +27,33 @@
   }
 }
 
+.perspective-switcher__panel-wrap {
+  position: relative;
+}
+
+.perspective-switcher__notch {
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 12px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  z-index: 1;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+
+  &--ba {
+    background-color: $color-mustard;
+  }
+
+  &--dev {
+    background-color: $color-ink;
+  }
+
+  &--qe {
+    background-color: $color-signal-green;
+  }
+}
+
 .perspective-switcher__panel {
   padding: $space-8;
   border-radius: $radius-card;
@@ -35,15 +62,15 @@
   box-shadow: $shadow-soft;
 
   &--ba {
-    border-top: 3px solid $color-mustard;
+    border-top-color: color-mix(in srgb, var(--color-mustard) 45%, var(--color-slate-300));
   }
 
   &--dev {
-    border-top: 3px solid $color-ink;
+    border-top-color: color-mix(in srgb, var(--color-ink) 25%, var(--color-slate-300));
   }
 
   &--qe {
-    border-top: 3px solid $color-signal-green;
+    border-top-color: color-mix(in srgb, var(--color-signal-green) 45%, var(--color-slate-300));
   }
 }
 

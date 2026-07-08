@@ -15,6 +15,13 @@
   letter-spacing: $letter-spacing-tight;
 }
 
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-top: $space-5;
+}
+
 .page-header__description {
   @include type-body;
   color: $color-slate-900;
