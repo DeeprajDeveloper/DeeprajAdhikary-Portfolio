@@ -12,8 +12,13 @@
   border-radius: $radius-sm;
   border: $border-default;
   padding: $space-3 $space-6;
-  transition: background-color $transition-fast, border-color $transition-fast,
-    color $transition-fast, opacity $transition-fast;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    opacity $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
   text-decoration: none;
   @include focus-ring;
 

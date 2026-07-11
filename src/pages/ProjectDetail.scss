@@ -1,0 +1,286 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Neo-brutalist pressable CTAs (inspired by uiverse.io/Voxybuns/lucky-fireant-71)
+.project-detail__cta.btn {
+  --cta-radius: 0.55em;
+  --cta-outline: var(--color-ink);
+  --cta-face: var(--color-paper);
+  --cta-text: var(--color-ink);
+
+  display: inline-flex;
+  padding: 0;
+  border: none;
+  border-radius: var(--cta-radius);
+  background: var(--cta-outline);
+  color: var(--cta-text);
+  line-height: 1;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+
+  &:hover:not(:disabled),
+  &:active:not(:disabled),
+  &:focus-visible {
+    background: var(--cta-outline);
+    border: none;
+    color: var(--cta-text);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.project-detail__cta-face {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  box-sizing: border-box;
+  border: 2px solid var(--cta-outline);
+  border-radius: var(--cta-radius);
+  padding: $space-2 $space-4;
+  background: var(--cta-face);
+  color: var(--cta-text);
+  transform: translateY(-0.2em);
+  transition:
+    transform 0.1s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.project-detail__cta:hover:not(:disabled) .project-detail__cta-face {
+  transform: translateY(-0.33em);
+}
+
+.project-detail__cta:active:not(:disabled) .project-detail__cta-face {
+  transform: translateY(0);
+}
+
+.project-detail__cta--live {
+  --cta-face: var(--color-button-primary-bg);
+  --cta-text: var(--color-button-primary-text);
+  --cta-outline: var(--color-ink);
+}
+
+a.btn.project-detail__cta,
+a.btn.project-detail__cta:hover:not(:disabled),
+a.btn.project-detail__cta:active:not(:disabled) {
+  color: var(--cta-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-detail__cta-face {
+    transition: none;
+    transform: translateY(-0.2em);
+  }
+
+  .project-detail__cta:hover:not(:disabled) .project-detail__cta-face,
+  .project-detail__cta:active:not(:disabled) .project-detail__cta-face {
+    transform: translateY(-0.2em);
+  }
+}
+
+.project-detail__cover {
+  margin: 0 0 $space-16;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: $border-default;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      color-mix(in srgb, var(--color-highlighter-yellow) 22%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      color-mix(in srgb, var(--color-ink) 8%, transparent),
+      transparent 48%
+    ),
+    $color-slate-100;
+  aspect-ratio: 16 / 9;
+  max-height: 28rem;
+}
+
+.project-detail__cover-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-detail__cover-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  padding: $space-8;
+  text-align: center;
+}
+
+.project-detail__cover-mark {
+  @include type-h2;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-ink;
+}
+
+.project-detail__cover-caption {
+  @include type-small;
+  font-family: $font-ui;
+  color: $color-slate-700;
+}
+
+.project-detail__problem {
+  margin-bottom: $space-16;
+  max-width: $max-width-wide;
+}
+
+.project-detail__problem-label {
+  @include type-h3;
+  color: $color-slate-700;
+  margin-bottom: $space-5;
+}
+
+.project-detail__problem-statement {
+  @include type-h2;
+  font-family: $font-display;
+  font-weight: $font-weight-regular;
+  color: $color-ink;
+  font-style: italic;
+}
+
+.project-detail__why {
+  margin-bottom: $space-16;
+  max-width: $max-width-wide;
+}
+
+.project-detail__section-label {
+  @include type-h3;
+  color: $color-slate-700;
+  margin-bottom: $space-6;
+}
+
+.project-detail__pointers {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  margin: 0;
+  padding: 0;
+}
+
+.project-detail__pointer {
+  @include type-body;
+  position: relative;
+  padding-left: $space-6;
+  color: $color-ink;
+  max-width: 40rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $color-highlighter-yellow;
+  }
+}
+
+.project-detail__tech {
+  margin-bottom: $space-12;
+  max-width: $max-width-wide;
+  scroll-margin-top: $space-8;
+}
+
+.project-detail__tech-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-5;
+  border: $border-default;
+  border-radius: $radius-sm;
+  background-color: $color-paper;
+  color: $color-ink;
+  font-family: $font-ui;
+  font-weight: $font-weight-medium;
+  font-size: $text-small;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    transform $transition-fast,
+    box-shadow $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: $color-ink;
+    box-shadow: $shadow-soft;
+  }
+
+  &--open {
+    background-color: $color-slate-100;
+  }
+}
+
+.project-detail__tech-caret {
+  transition: transform $transition-fast;
+}
+
+.project-detail__tech-toggle--open .project-detail__tech-caret {
+  transform: rotate(180deg);
+}
+
+.project-detail__tech-panel {
+  overflow: hidden;
+}
+
+.project-detail__tech-inner {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  margin-top: $space-6;
+  padding: $space-6;
+  border: $border-default;
+  border-radius: $radius-card;
+  background-color: $color-slate-100;
+}
+
+.project-detail__tech-item {
+  padding-bottom: $space-6;
+  border-bottom: $border-default;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.project-detail__tech-label {
+  @include type-h4;
+  margin-bottom: $space-3;
+  color: $color-ink;
+}
+
+.project-detail__tech-body {
+  @include type-body;
+  color: $color-slate-900;
+  max-width: 40rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-detail__tech-toggle,
+  .project-detail__tech-caret {
+    transition: none;
+  }
+
+  .project-detail__tech-toggle:hover {
+    transform: none;
+  }
+}
