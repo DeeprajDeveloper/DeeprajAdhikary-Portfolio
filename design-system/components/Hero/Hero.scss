@@ -7,12 +7,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: $space-6;
+  padding: calc(#{$nav-height} + #{$space-4}) $space-4 $space-8;
   overflow: hidden;
+
+  @include respond-to(md) {
+    padding: $space-8 $space-6;
+  }
 
   &__content {
     position: relative;
     z-index: 2;
+    width: 100%;
     @include content-column;
     text-align: center;
     pointer-events: none;
@@ -28,6 +33,11 @@
     @include type-display;
     margin-inline: auto;
     margin-bottom: $space-6;
+    max-width: 22ch;
+
+    @include respond-to(md) {
+      max-width: none;
+    }
   }
 
   &__word {
@@ -75,8 +85,10 @@
     padding: $space-2 $space-4;
     border-radius: $radius-sm;
     margin-bottom: $space-6;
-    min-width: calc(24ch + #{$space-8});
-    height: 40px;
+    width: min(100%, calc(24ch + #{$space-8}));
+    max-width: 100%;
+    min-height: 40px;
+    height: auto;
   }
 
   &__eyebrow-line {
@@ -118,7 +130,7 @@
 
   &__lenses {
     display: inline-block;
-    min-width: 20ch;
+    min-width: min(20ch, 100%);
     text-align: center;
     vertical-align: baseline;
     cursor: default;
@@ -158,14 +170,34 @@
 
   &__actions {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    gap: $space-4;
+    gap: $space-3;
     justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 20rem;
+    margin-inline: auto;
+
+    @include respond-to(sm) {
+      flex-direction: row;
+      align-items: center;
+      max-width: none;
+      gap: $space-4;
+    }
+
+    .btn {
+      width: 100%;
+
+      @include respond-to(sm) {
+        width: auto;
+      }
+    }
   }
 
   &__scroll-cue {
     position: absolute;
-    bottom: $space-8;
+    bottom: max(#{$space-4}, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -173,8 +205,13 @@
     border: none;
     padding: $space-4;
     @include focus-ring;
-    display: flex;
+    display: none;
     flex-direction: column;
+
+    @include respond-to(md) {
+      display: flex;
+      bottom: $space-8;
+    }
     align-items: center;
     justify-content: center;
     gap: $space-2;

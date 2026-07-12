@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .projects-list {
   display: flex;
@@ -11,12 +12,16 @@
   display: flex;
   flex-direction: column;
   gap: $space-2;
-  padding: $space-8;
+  padding: $space-5;
   background-color: $color-surface;
   border: $border-width solid $color-border-subtle;
   border-radius: $radius-xl;
   transition: border-color $duration-normal $ease-out,
     box-shadow $duration-normal $ease-out;
+
+  @include respond-to(md) {
+    padding: $space-8;
+  }
 
   &:hover,
   &:focus-within {
@@ -39,9 +44,10 @@
 
 .project-card__header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: $space-4;
+  gap: $space-3;
   margin-bottom: $space-3;
 }
 
@@ -50,6 +56,7 @@
   font-size: $font-size-xl;
   font-weight: $font-weight-semibold;
   color: $color-text;
+  min-width: 0;
 }
 
 .project-card__tagline {

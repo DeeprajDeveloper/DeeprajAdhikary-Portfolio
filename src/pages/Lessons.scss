@@ -9,11 +9,18 @@
 
 .lesson-card {
   display: flex;
-  gap: $space-6;
-  padding: $space-8;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-5;
   background-color: $color-surface;
   border: $border-width solid $color-border-subtle;
   border-radius: $radius-xl;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    gap: $space-6;
+    padding: $space-8;
+  }
 }
 
 .lesson-card__number {

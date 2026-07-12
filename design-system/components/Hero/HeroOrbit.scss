@@ -24,7 +24,7 @@
     position: absolute;
     z-index: 1;
     transform: translate(-50%, -50%);
-    width: 148px;
+    width: 96px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,14 +37,22 @@
     touch-action: none;
     @include focus-ring;
 
+    @include respond-to(md) {
+      width: 120px;
+    }
+
+    @include respond-to(lg) {
+      width: 148px;
+    }
+
     &:active {
       cursor: grabbing;
     }
   }
 
   &__orb-icon-wrap {
-    width: 88px;
-    height: 88px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -55,6 +63,16 @@
       transform $transition-fast,
       box-shadow $transition-fast,
       border-color $transition-fast;
+
+    @include respond-to(md) {
+      width: 72px;
+      height: 72px;
+    }
+
+    @include respond-to(lg) {
+      width: 88px;
+      height: 88px;
+    }
   }
 
   &__orb-icon {
@@ -106,28 +124,12 @@
     transform: scale(1.05);
   }
 
-  @media (max-width: 900px) {
-    &__orb {
-      width: 120px;
-    }
-
-    &__orb-icon-wrap {
-      width: 72px;
-      height: 72px;
-    }
-
-    &__orb-icon {
-      width: 22px;
-      height: 22px;
-    }
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    opacity: 0.45;
 
     &__orb-tagline {
       display: none;
     }
-  }
-
-  @media (max-width: 640px) {
-    opacity: 0.55;
 
     &__orb-label {
       font-size: $text-xsmall;
