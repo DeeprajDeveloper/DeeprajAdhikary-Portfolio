@@ -38,10 +38,10 @@
 }
 
 .playground-launcher__panel {
-  width: min(22rem, calc(100vw - #{$space-8}));
-  max-height: min(70vh, 32rem);
+  width: min(36rem, calc(100vw - #{$space-8}));
+  max-height: min(78vh, 40rem);
   overflow: auto;
-  padding: $space-4;
+  padding: $space-6;
   border: 1px solid $color-slate-300;
   border-radius: $radius-card;
   background-color: $color-island;
@@ -49,7 +49,7 @@
 }
 
 .playground-launcher__header {
-  margin-bottom: $space-4;
+  margin-bottom: $space-5;
 }
 
 .playground-launcher__eyebrow {
@@ -62,22 +62,94 @@
   @include type-h3;
 }
 
+.playground-launcher__power-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-5;
+  padding: $space-4;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-card;
+  background: $color-paper;
+}
+
+.playground-launcher__power-copy {
+  min-width: 0;
+}
+
+.playground-launcher__power-label {
+  margin: 0 0 $space-1;
+  font-family: $font-ui;
+  font-size: $text-body;
+  font-weight: $font-weight-semibold;
+  color: $color-ink;
+}
+
+.playground-launcher__power-desc {
+  margin: 0;
+  @include type-small;
+  color: $color-slate-700;
+}
+
+.playground-launcher__power {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1.5px solid $color-slate-500;
+  border-radius: $radius-full;
+  background: $color-slate-100;
+  color: $color-slate-700;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast,
+    box-shadow $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    border-color: $color-ink;
+    color: $color-ink;
+  }
+
+  &--on {
+    // background-color: $color-ink;
+    border-color: $color-highlighter-yellow;
+    color: $color-highlighter-yellow;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-highlighter-yellow) 35%, transparent);
+
+    &:hover {
+      background-color: $color-slate-300;
+      border-color: $color-highlighter-yellow;
+      color: $color-highlighter-yellow;
+    }
+  }
+}
+
 .playground-launcher__list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: $space-2;
+  display: grid;
+  gap: $space-3;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .playground-launcher__item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: $space-1;
+  gap: $space-2;
   width: 100%;
-  padding: $space-3;
+  min-height: 8.5rem;
+  padding: $space-4;
   border: 1px solid $color-slate-300;
   border-radius: $radius-card;
   background: $color-paper;
@@ -114,20 +186,10 @@
 }
 
 .playground-launcher__hint {
-  margin: $space-3 0 0;
-  padding: $space-3;
+  margin: $space-4 0 0;
+  padding: $space-3 $space-4;
   border-radius: $radius-sm;
   background: color-mix(in srgb, var(--color-highlighter-yellow) 28%, transparent);
   @include type-small;
   color: $color-ink;
-}
-
-.playground-launcher__all {
-  display: inline-block;
-  margin-top: $space-4;
-  @include type-xsmall;
-  font-family: $font-ui;
-  font-weight: $font-weight-semibold;
-  color: $color-ink;
-  @include highlighter-swipe;
 }

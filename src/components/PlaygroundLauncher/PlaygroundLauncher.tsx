@@ -1,9 +1,11 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { CricketIcon, XIcon } from '@phosphor-icons/react';
+import { useNavigate } from 'react-router-dom';
+import { CricketIcon, PowerIcon, XIcon } from '@phosphor-icons/react';
 import { playgroundItems } from '@data/playground';
 import { useAnnotateMode } from '@/context/AnnotateContext';
 import './PlaygroundLauncher.scss';
+
+const launcherItems = playgroundItems.filter((item) => item.slug !== 'annotate');
 
 export function PlaygroundLauncher() {
   const [open, setOpen] = useState(false);
@@ -11,7 +13,7 @@ export function PlaygroundLauncher() {
   const panelId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { setEnabled } = useAnnotateMode();
+  const { enabled, toggle } = useAnnotateMode();
 
   useEffect(() => {
     if (!open) return;
@@ -44,12 +46,12 @@ export function PlaygroundLauncher() {
       return;
     }
 
-    if (slug === 'annotate') {
-      setEnabled(true);
-    }
-
     setOpen(false);
     if (href) navigate(href);
+  };
+
+  const handleHighlightToggle = () => {
+    toggle();
   };
 
   return (
@@ -62,12 +64,32 @@ export function PlaygroundLauncher() {
           aria-label="Playground"
         >
           <div className="playground-launcher__header">
-            <p className="playground-launcher__eyebrow">Playground</p>
-            <p className="playground-launcher__title">Pick something to try</p>
+            <div className="playground-launcher__header-copy">
+              <p className="playground-launcher__eyebrow">Playground</p>
+              <p className="playground-launcher__title">Pick something to try</p>
+            </div>
+          </div>
+
+          <div className="playground-launcher__power-row">
+            <div className="playground-launcher__power-copy">
+              <p className="playground-launcher__power-label">Highlighter</p>
+              <p className="playground-launcher__power-desc">
+                Mark up prose across the site. Drag to highlight.
+              </p>
+            </div>
+            <button
+              type="button"
+              className={`playground-launcher__power ${enabled ? 'playground-launcher__power--on' : ''}`}
+              aria-pressed={enabled}
+              aria-label={enabled ? 'Turn off highlighter' : 'Turn on highlighter'}
+              onClick={handleHighlightToggle}
+            >
+              <PowerIcon size={22} weight="bold" aria-hidden="true" />
+            </button>
           </div>
 
           <ul className="playground-launcher__list">
-            {playgroundItems.map((item) => (
+            {launcherItems.map((item) => (
               <li key={item.slug}>
                 <button
                   type="button"
@@ -87,14 +109,6 @@ export function PlaygroundLauncher() {
               Open your browser console — the ticket is already waiting.
             </p>
           )}
-
-          <Link
-            to="/playground"
-            className="playground-launcher__all"
-            onClick={() => setOpen(false)}
-          >
-            Open full playground page
-          </Link>
         </div>
       )}
 

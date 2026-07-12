@@ -332,20 +332,6 @@ $menu-island-radius: 0.5rem;
     justify-content: center;
   }
 
-  &__star {
-    color: $color-slate-500;
-  }
-
-  &__link--playground {
-    .menu-island__star {
-      color: $color-ink;
-    }
-
-    &.menu-island__link--active .menu-island__star {
-      color: $color-highlighter-yellow;
-    }
-  }
-
   &__link--active .menu-island__index {
     color: $color-ink;
   }

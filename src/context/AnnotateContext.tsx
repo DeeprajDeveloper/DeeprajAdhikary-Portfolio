@@ -19,7 +19,7 @@ const AnnotateModeContext = createContext<AnnotateModeValue | null>(null);
 
 const TOAST_SHOWN_KEY = 'playground-annotate-toast-shown';
 const BLOCKED_SELECTOR =
-  'button, a, nav, .tag, .btn, .menu-island, .brand-island, .annotate-toolbar, .playground-launcher';
+  'button, nav, .tag, .btn, .menu-island, .brand-island, .theme-island, .annotate-toolbar, .playground-launcher, a.btn';
 
 let markCountSnapshot = 0;
 const markListeners = new Set<() => void>();
@@ -174,12 +174,8 @@ export function AnnotateProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('annotate-mode', enabled);
-    document.body.style.cursor = enabled
-      ? 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\'%3E%3Cpath fill=\'%23f5c518\' stroke=\'%23111111\' stroke-width=\'1\' d=\'M3 21l1.5-6L17 2.5a2 2 0 0 1 2.8 0l1.7 1.7a2 2 0 0 1 0 2.8L8.5 19.5 3 21z\'/%3E%3C/svg%3E") 2 22, text'
-      : '';
     return () => {
       document.documentElement.classList.remove('annotate-mode');
-      document.body.style.cursor = '';
     };
   }, [enabled]);
 

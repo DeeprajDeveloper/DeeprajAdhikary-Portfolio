@@ -1,5 +1,4 @@
-import { HighlighterCircleIcon } from '@phosphor-icons/react';
-import { useLocation } from 'react-router-dom';
+import { HighlighterCircleIcon, PowerIcon } from '@phosphor-icons/react';
 import {
   useAnnotateMarks,
   useAnnotateMode,
@@ -8,39 +7,40 @@ import {
 import './AnnotateToolbar.scss';
 
 export function AnnotateToolbar() {
-  const location = useLocation();
-  const { enabled, toggle } = useAnnotateMode();
+  const { enabled, setEnabled } = useAnnotateMode();
   const { markCount, clearMarks } = useAnnotateMarks();
   const { showToast, dismissToast } = useAnnotateToast();
-  const onPlayground = location.pathname.startsWith('/playground');
-  const visible = enabled || markCount > 0 || onPlayground || showToast;
 
-  if (!visible) return null;
+  if (!enabled && !showToast) return null;
 
   return (
     <>
-      <div className="annotate-toolbar" role="group" aria-label="Annotate mode controls">
-        <button
-          type="button"
-          className={`annotate-toolbar__toggle ${enabled ? 'annotate-toolbar__toggle--active' : ''}`}
-          aria-pressed={enabled}
-          aria-label={enabled ? 'Turn off Highlight mode' : 'Turn on Highlight mode'}
-          onClick={toggle}
-        >
-          <HighlighterCircleIcon size={18} weight="duotone" aria-hidden="true" />
-          <span>{enabled ? 'Highlighting' : 'Highlight'}</span>
-        </button>
+      {enabled && (
+        <div className="annotate-toolbar" role="group" aria-label="Highlight mode controls">
+          <span className="annotate-toolbar__status" aria-hidden="true">
+            <HighlighterCircleIcon size={18} weight="duotone" />
+          </span>
 
-        {markCount > 0 && (
+          {markCount > 0 && (
+            <button
+              type="button"
+              className="annotate-toolbar__clear"
+              onClick={clearMarks}
+            >
+              Clear
+            </button>
+          )}
+
           <button
             type="button"
-            className="annotate-toolbar__clear"
-            onClick={clearMarks}
+            className="annotate-toolbar__power annotate-toolbar__power--on"
+            aria-label="Turn off highlight mode"
+            onClick={() => setEnabled(false)}
           >
-            Clear all highlights
+            <PowerIcon size={18} weight="bold" aria-hidden="true" />
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {showToast && (
         <div className="annotate-toast" role="status">

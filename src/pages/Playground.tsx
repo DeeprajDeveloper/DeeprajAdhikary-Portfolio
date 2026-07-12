@@ -12,7 +12,7 @@ export function PlaygroundPage() {
         <PageHeader
           eyebrow="Playground"
           title="A corner of the site that’s allowed to be fun"
-          description="Use the star button in the bottom-right corner anytime — or jump into a demo below."
+          description="Use the playground button in the bottom-right corner anytime — or jump into a demo below."
         />
 
         <div className="playground-grid">

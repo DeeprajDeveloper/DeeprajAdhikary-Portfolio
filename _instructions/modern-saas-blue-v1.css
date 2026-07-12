@@ -1,0 +1,66 @@
+:root {
+  /* Base colors */
+  --color-primary: #144AE0;
+  --color-secondary: #ebebeb;
+  --color-accent: #070F42;
+  --color-background: #FFFFFF;
+  --color-text: #070F42;
+
+  /* Primary scale */
+  --color-primary-50: #F4F6FA;
+  --color-primary-100: #DFE4F2;
+  --color-primary-200: #BFCAEA;
+  --color-primary-300: #809AE2;
+  --color-primary-400: #3D69E4;
+  --color-primary-500: #144AE0;
+  --color-primary-600: #0D3AB9;
+  --color-primary-700: #072B8F;
+  --color-primary-800: #021B60;
+  --color-primary-900: #000F38;
+  --color-primary-950: #00081F;
+
+  /* Secondary scale */
+  --color-secondary-50: #F7F7F7;
+  --color-secondary-100: #F6F6F6;
+  --color-secondary-200: #F4F4F4;
+  --color-secondary-300: #F0F0F0;
+  --color-secondary-400: #EDEDED;
+  --color-secondary-500: #EBEBEB;
+  --color-secondary-600: #BBBBBB;
+  --color-secondary-700: #8A8A8A;
+  --color-secondary-800: #565656;
+  --color-secondary-900: #2A2A2A;
+  --color-secondary-950: #0F0F0F;
+
+  /* Accent scale */
+  --color-accent-50: #F5F5FA;
+  --color-accent-100: #D0D4EC;
+  --color-accent-200: #9CA5DD;
+  --color-accent-300: #3449CE;
+  --color-accent-400: #142381;
+  --color-accent-500: #070F42;
+  --color-accent-600: #050C3B;
+  --color-accent-700: #030A33;
+  --color-accent-800: #02072A;
+  --color-accent-900: #010523;
+  --color-accent-950: #00041E;
+
+  /* Neutral scale */
+  --color-neutral-50: #F5F5FA;
+  --color-neutral-100: #D0D4EC;
+  --color-neutral-200: #9CA5DD;
+  --color-neutral-300: #3449CE;
+  --color-neutral-400: #142381;
+  --color-neutral-500: #070F42;
+  --color-neutral-600: #050C3B;
+  --color-neutral-700: #030A33;
+  --color-neutral-800: #02072A;
+  --color-neutral-900: #010523;
+  --color-neutral-950: #00041E;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Nunito Sans', sans-serif;
+  --font-heading-weight: 700;
+  --font-body-weight: 400;
+}

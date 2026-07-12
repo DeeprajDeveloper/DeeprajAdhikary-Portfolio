@@ -39,7 +39,7 @@ export default function App() {
         duration={400}
       >
         <div className="page__body">
-          <main className="page__main">
+          <main className="page__main" data-annotatable>
             <PageTransition>
               <Routes>
                 <Route path="/" element={<HomePage />} />

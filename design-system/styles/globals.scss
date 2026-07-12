@@ -174,9 +174,39 @@ button {
 
 mark.annotate-mark {
   background-color: $color-highlighter-yellow;
-  color: $color-ink;
+  color: #111111;
   padding: 0.05em 0.08em;
   border-radius: 1px;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+html.annotate-mode,
+html.annotate-mode * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 256 256'%3E%3Cpath fill='%23f5c518' stroke='%23111111' stroke-width='10' stroke-linejoin='round' d='M253.66,106.34a8,8,0,0,0-11.32,0L192,156.69,107.31,72l50.35-50.34a8,8,0,1,0-11.32-11.32L96,60.69A16,16,0,0,0,93.18,79.5L72,100.69a16,16,0,0,0,0,22.62L76.69,128,18.34,186.34a8,8,0,0,0,3.13,13.25l72,24A7.88,7.88,0,0,0,96,224a8,8,0,0,0,5.66-2.34L136,187.31l4.69,4.69a16,16,0,0,0,22.62,0l21.18-21.18A16,16,0,0,0,203.31,168l50.35-50.34A8,8,0,0,0,253.66,106.34ZM152,180.69,83.31,112,104,91.31,172.69,160Z'/%3E%3C/svg%3E")
+      4 28,
+    text !important;
+}
+
+html.annotate-mode .annotate-toolbar,
+html.annotate-mode .annotate-toolbar *,
+html.annotate-mode .annotate-toast,
+html.annotate-mode .annotate-toast *,
+html.annotate-mode .playground-launcher,
+html.annotate-mode .playground-launcher *,
+html.annotate-mode .menu-island,
+html.annotate-mode .menu-island *,
+html.annotate-mode .brand-island,
+html.annotate-mode .theme-island,
+html.annotate-mode .theme-island * {
+  cursor: auto !important;
+}
+
+html.annotate-mode .annotate-toolbar button,
+html.annotate-mode .annotate-toast button,
+html.annotate-mode .playground-launcher button,
+html.annotate-mode .menu-island button,
+html.annotate-mode .menu-island a,
+html.annotate-mode .brand-island {
+  cursor: pointer !important;
 }
