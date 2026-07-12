@@ -78,8 +78,11 @@ export function Nav() {
 
   return (
     <>
-      <Link to="/" className="brand-island">
-        <span className="brand-island__name">{site.name}</span>
+      <Link to="/" className="brand-island" aria-label={site.name}>
+        <span className="brand-island__name brand-island__name--full">{site.name}</span>
+        <span className="brand-island__name brand-island__name--short" aria-hidden="true">
+          DA
+        </span>
       </Link>
 
       <div className="nav-islands">

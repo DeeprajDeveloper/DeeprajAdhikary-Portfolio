@@ -2,7 +2,7 @@
 @use 'mixins' as *;
 
 .project-detail__cover {
-  margin: 0 0 $space-16;
+  margin: 0 0 $space-10;
   border-radius: $radius-xl;
   overflow: hidden;
   border: $border-default;
@@ -20,6 +20,10 @@
     $color-slate-100;
   aspect-ratio: 16 / 9;
   max-height: 28rem;
+
+  @include respond-to(md) {
+    margin-bottom: $space-16;
+  }
 }
 
 .project-detail__cover-image {
@@ -37,9 +41,14 @@
   gap: $space-3;
   width: 100%;
   height: 100%;
-  min-height: 16rem;
-  padding: $space-8;
+  min-height: 12rem;
+  padding: $space-5;
   text-align: center;
+
+  @include respond-to(md) {
+    min-height: 16rem;
+    padding: $space-8;
+  }
 }
 
 .project-detail__cover-mark {
@@ -55,8 +64,12 @@
 }
 
 .project-detail__problem {
-  margin-bottom: $space-16;
+  margin-bottom: $space-10;
   max-width: $max-width-wide;
+
+  @include respond-to(md) {
+    margin-bottom: $space-16;
+  }
 }
 
 .project-detail__problem-label {

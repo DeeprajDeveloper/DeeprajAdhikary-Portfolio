@@ -39,7 +39,7 @@ function polarToPoint(angleDeg: number, radius: number, centerX: number, centerY
 function getLayout(width: number, height: number): Layout {
   const centerX = width / 2;
   const centerY = height * 0.46;
-  const radius = Math.min(Math.max(Math.min(width, height) * 0.34, 130), 300);
+  const radius = Math.min(Math.max(Math.min(width, height) * 0.3, 88), 300);
 
   return { width, height, centerX, centerY, radius };
 }

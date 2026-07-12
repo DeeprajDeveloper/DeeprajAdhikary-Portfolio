@@ -1,17 +1,23 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-.home-perspectives__grid,
-.home-featured__grid {
+.home-perspectives__grid {
   display: grid;
   gap: $space-6;
 
   @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(lg) {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .home-featured__grid {
+  display: grid;
+  gap: $space-6;
+
   @include respond-to(md) {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -55,11 +55,15 @@
 }
 
 .perspective-switcher__panel {
-  padding: $space-8;
+  padding: $space-5;
   border-radius: $radius-card;
   border: $border-default;
   background-color: $color-slate-100;
   box-shadow: $shadow-soft;
+
+  @include respond-to(md) {
+    padding: $space-8;
+  }
 
   &--ba {
     border-top-color: color-mix(in srgb, var(--color-mustard) 45%, var(--color-slate-300));

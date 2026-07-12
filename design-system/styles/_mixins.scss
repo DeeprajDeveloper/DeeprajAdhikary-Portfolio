@@ -37,23 +37,22 @@
 
 @mixin type-display {
   font-family: $font-ui;
-  // font-style: italic;
   font-weight: $font-weight-regular;
-  font-size: $text-display;
+  font-size: clamp(2rem, 4.5vw + 0.75rem, $text-display);
   line-height: $leading-display;
 }
 
 @mixin type-h1 {
   font-family: $font-ui;
   font-weight: $font-weight-bold;
-  font-size: $text-h1;
+  font-size: clamp(1.75rem, 2.5vw + 0.75rem, $text-h1);
   line-height: $leading-h1;
 }
 
 @mixin type-h2 {
   font-family: $font-ui;
   font-weight: $font-weight-semibold;
-  font-size: $text-h2;
+  font-size: clamp(1.35rem, 1.5vw + 0.75rem, $text-h2);
   line-height: $leading-h2;
 }
 
@@ -103,7 +102,11 @@
   width: 100%;
   max-width: $page-max-width;
   margin-inline: auto;
-  padding-inline: $space-6;
+  padding-inline: $space-4;
+
+  @include respond-to(md) {
+    padding-inline: $space-6;
+  }
 }
 
 @mixin content-column {

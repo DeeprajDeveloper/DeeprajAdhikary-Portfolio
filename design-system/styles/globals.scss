@@ -11,6 +11,7 @@
 html {
   font-size: $root-font-size;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(#{$nav-height} + #{$space-4});
   overflow-x: hidden;
 }
 
@@ -151,9 +152,13 @@ button {
 }
 
 .inner-page {
-  padding-block: $space-16 $space-16;
+  padding-block: calc(#{$nav-height} + #{$space-8}) $space-12;
 
   @include respond-to(md) {
+    padding-block: calc(#{$nav-height} + #{$space-10}) $space-16;
+  }
+
+  @include respond-to(lg) {
     padding-block: $space-20 $space-20;
   }
 }
