@@ -171,3 +171,12 @@ button {
 .case-study-sections {
   margin-top: $space-4;
 }
+
+mark.annotate-mark {
+  background-color: $color-highlighter-yellow;
+  color: $color-ink;
+  padding: 0.05em 0.08em;
+  border-radius: 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}

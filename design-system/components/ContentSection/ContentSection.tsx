@@ -10,7 +10,7 @@ export function ContentSection({ label, content, isPlaceholder = true }: Content
   return (
     <section className={`content-section ${isPlaceholder ? 'content-section--placeholder' : ''}`}>
       <h2 className="content-section__label">{label}</h2>
-      <div className="content-section__body">
+      <div className="content-section__body" data-annotatable>
         <p>{content}</p>
       </div>
     </section>

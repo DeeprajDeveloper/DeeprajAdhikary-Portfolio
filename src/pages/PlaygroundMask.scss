@@ -1,0 +1,96 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.mask-playground {
+  display: grid;
+  gap: $space-6;
+  margin-bottom: $space-8;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mask-card {
+  padding: $space-5;
+  background-color: $color-slate-100;
+  border: $border-default;
+  border-radius: $radius-card;
+  box-shadow: $shadow-soft;
+
+  @include respond-to(md) {
+    padding: $space-6;
+  }
+
+  &__title {
+    @include type-h3;
+    margin-bottom: $space-5;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    margin: 0;
+
+    div {
+      display: grid;
+      gap: $space-1;
+    }
+
+    dt {
+      @include label-caps;
+      margin: 0;
+    }
+
+    dd {
+      margin: 0;
+      @include type-body;
+      color: $color-ink;
+      transition: background-color $transition-fast, color $transition-fast;
+    }
+  }
+
+  &__value--masked {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-2;
+    background: linear-gradient(
+      to top,
+      $color-highlight-mark 40%,
+      transparent 40%
+    );
+    padding-inline: 0.1em;
+  }
+
+  &__value--mismatch {
+    color: $color-signal-rust;
+  }
+
+  &__flag {
+    @include type-xsmall;
+    font-family: $font-ui;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-signal-rust;
+  }
+}
+
+.mask-playground__explain {
+  max-width: $max-width-wide;
+}
+
+.mask-playground__explain-toggle {
+  margin-bottom: $space-4;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: $font-ui;
+  font-size: $text-small;
+  font-weight: $font-weight-semibold;
+  color: $color-ink;
+  @include highlighter-swipe;
+  @include focus-ring;
+}

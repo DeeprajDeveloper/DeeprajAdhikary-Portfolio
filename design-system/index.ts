@@ -13,6 +13,7 @@ export { SectionTeaser } from './components/SectionTeaser/SectionTeaser';
 export { ContentSection } from './components/ContentSection/ContentSection';
 export { PerspectiveCard } from './components/PerspectiveCard/PerspectiveCard';
 export { Callout } from './components/Callout/Callout';
+export { PlaygroundCard } from './components/PlaygroundCard/PlaygroundCard';
 export { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
 export { ThemeSwitch } from './components/ThemeSwitch/ThemeSwitch';
 export { ThemeProvider, useTheme } from './context/ThemeContext';

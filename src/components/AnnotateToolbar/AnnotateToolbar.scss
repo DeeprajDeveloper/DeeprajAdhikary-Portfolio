@@ -1,0 +1,92 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.annotate-toolbar {
+  position: fixed;
+  bottom: max(#{$space-4}, env(safe-area-inset-bottom));
+  left: max(#{$space-4}, env(safe-area-inset-left));
+  right: auto;
+  transform: none;
+  z-index: $z-overlay;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-full;
+  background-color: $color-island;
+  box-shadow: $shadow-elevated;
+}
+
+.annotate-toolbar__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border: none;
+  border-radius: $radius-full;
+  background: transparent;
+  color: $color-ink;
+  font-family: $font-ui;
+  font-size: $text-small;
+  font-weight: $font-weight-semibold;
+  @include focus-ring;
+
+  &--active {
+    // background-color: $color-paper;
+    color: $color-ink;
+  }
+}
+
+.annotate-toolbar__clear {
+  padding: $space-2 $space-4;
+  border: none;
+  border-radius: $radius-full;
+  background: $color-slate-100;
+  color: $color-ink;
+  font-family: $font-ui;
+  font-size: $text-small;
+  font-weight: $font-weight-medium;
+  @include focus-ring;
+
+  &:hover {
+    background: $color-slate-300;
+  }
+}
+
+.annotate-toast {
+  position: fixed;
+  bottom: calc(max(#{$space-4}, env(safe-area-inset-bottom)) + 4rem);
+  left: max(#{$space-4}, env(safe-area-inset-left));
+  transform: none;
+  z-index: $z-overlay;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+  width: min(28rem, calc(100vw - #{$space-8}));
+  padding: $space-3 $space-4;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-card;
+  background-color: $color-island;
+  box-shadow: $shadow-elevated;
+}
+
+.annotate-toast__text {
+  margin: 0;
+  flex: 1;
+  @include type-small;
+  color: $color-ink;
+}
+
+.annotate-toast__dismiss {
+  padding: $space-1 $space-3;
+  border: none;
+  border-radius: $radius-sm;
+  background: $color-ink;
+  color: $color-highlighter-yellow;
+  font-family: $font-ui;
+  font-size: $text-xsmall;
+  font-weight: $font-weight-semibold;
+  @include focus-ring;
+}

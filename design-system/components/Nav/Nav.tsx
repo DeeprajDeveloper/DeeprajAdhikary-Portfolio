@@ -10,6 +10,7 @@ import {
   NotePencilIcon,
   ListIcon,
   BrainIcon,
+  CricketIcon,
   XIcon,
   type Icon,
 } from '@phosphor-icons/react';
@@ -29,6 +30,7 @@ const navIcons: Record<(typeof navLinks)[number]['href'], Icon> = {
   '/artifacts': PackageIcon,
   '/lessons': NotePencilIcon,
   '/exploring': CompassIcon,
+  '/playground': CricketIcon,
 };
 
 export function Nav() {
@@ -130,12 +132,13 @@ export function Nav() {
                   const isActive = index === activeIndex;
                   const number = index + 1;
                   const NavIcon = navIcons[link.href];
+                  const isPlayground = link.href === '/playground';
 
                   return (
                     <Link
                       key={link.href}
                       to={link.href}
-                      className={`menu-island__link ${isActive ? 'menu-island__link--active' : ''}`}
+                      className={`menu-island__link ${isActive ? 'menu-island__link--active' : ''} ${isPlayground ? 'menu-island__link--playground' : ''}`}
                       aria-current={isActive ? 'page' : undefined}
                       tabIndex={open ? undefined : -1}
                       {...(showShortcutKeys
@@ -151,12 +154,16 @@ export function Nav() {
                       <NavIcon
                         className="menu-island__link-icon"
                         size={18}
-                        weight="duotone"
+                        weight={isPlayground ? (isActive ? 'fill' : 'regular') : 'duotone'}
                         aria-hidden="true"
                       />
                       <span className="menu-island__label">{link.label}</span>
                       <span className="menu-island__index" aria-hidden="true">
-                        {number}
+                        {isPlayground ? (
+                          null
+                        ) : (
+                          number
+                        )}
                       </span>
                     </Link>
                   );

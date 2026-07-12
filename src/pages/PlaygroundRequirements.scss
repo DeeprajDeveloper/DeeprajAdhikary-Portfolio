@@ -1,0 +1,83 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.req-gen {
+  max-width: $max-width-wide;
+  margin-bottom: $space-8;
+
+  &__label {
+    display: block;
+    @include label-caps;
+    margin-bottom: $space-3;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: $space-3 $space-4;
+    border: $border-default;
+    border-radius: $radius-card;
+    background: $color-paper;
+    color: $color-ink;
+    font-family: $font-body;
+    font-size: $text-body;
+    line-height: $leading-body;
+    resize: vertical;
+    @include focus-ring;
+  }
+
+  &__hint {
+    margin: $space-3 0 0;
+    @include type-small;
+    color: $color-slate-700;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    margin-top: $space-5;
+  }
+
+  &__output {
+    max-width: $max-width-wide;
+    padding: $space-6;
+    background: $color-slate-100;
+    border: $border-default;
+    border-radius: $radius-card;
+    box-shadow: $shadow-soft;
+  }
+
+  &__frame {
+    @include type-small;
+    color: $color-slate-700;
+    margin: 0 0 $space-4;
+  }
+
+  &__gwt {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    margin-bottom: $space-5;
+
+    p {
+      margin: 0;
+      @include type-body;
+      color: $color-ink;
+    }
+
+    strong {
+      font-family: $font-ui;
+      font-weight: $font-weight-semibold;
+      margin-right: $space-2;
+    }
+  }
+
+  &__tagline {
+    margin: 0;
+    @include type-xsmall;
+    font-family: $font-ui;
+    color: $color-slate-700;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,133 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.playground-launcher {
+  position: fixed;
+  right: max(#{$space-4}, env(safe-area-inset-right));
+  bottom: max(#{$space-4}, env(safe-area-inset-bottom));
+  z-index: $z-overlay;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: $space-3;
+}
+
+.playground-launcher__fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-full;
+  background-color: $color-paper;
+  color: $color-ink;
+  box-shadow: $shadow-elevated;
+  cursor: pointer;
+  transition: transform $transition-fast, background-color $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &--open {
+    background-color: $color-island;
+    color: $color-ink;
+  }
+}
+
+.playground-launcher__panel {
+  width: min(22rem, calc(100vw - #{$space-8}));
+  max-height: min(70vh, 32rem);
+  overflow: auto;
+  padding: $space-4;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-card;
+  background-color: $color-island;
+  box-shadow: $shadow-elevated;
+}
+
+.playground-launcher__header {
+  margin-bottom: $space-4;
+}
+
+.playground-launcher__eyebrow {
+  margin: 0 0 $space-1;
+  @include label-caps;
+}
+
+.playground-launcher__title {
+  margin: 0;
+  @include type-h3;
+}
+
+.playground-launcher__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.playground-launcher__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-1;
+  width: 100%;
+  padding: $space-3;
+  border: 1px solid $color-slate-300;
+  border-radius: $radius-card;
+  background: $color-paper;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color $transition-fast, transform $transition-fast;
+  @include focus-ring;
+
+  &:hover {
+    border-color: $color-ink;
+    transform: translateY(-1px);
+  }
+}
+
+.playground-launcher__item-tag {
+  @include type-xsmall;
+  font-family: $font-ui;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color-slate-700;
+}
+
+.playground-launcher__item-title {
+  @include type-small;
+  font-family: $font-ui;
+  font-weight: $font-weight-semibold;
+  color: $color-ink;
+}
+
+.playground-launcher__item-desc {
+  @include type-xsmall;
+  color: $color-slate-700;
+}
+
+.playground-launcher__hint {
+  margin: $space-3 0 0;
+  padding: $space-3;
+  border-radius: $radius-sm;
+  background: color-mix(in srgb, var(--color-highlighter-yellow) 28%, transparent);
+  @include type-small;
+  color: $color-ink;
+}
+
+.playground-launcher__all {
+  display: inline-block;
+  margin-top: $space-4;
+  @include type-xsmall;
+  font-family: $font-ui;
+  font-weight: $font-weight-semibold;
+  color: $color-ink;
+  @include highlighter-swipe;
+}

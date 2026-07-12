@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Nav, Footer, ClickSpark } from '@design-system/index';
 import { PageTransition } from '@/components/PageTransition/PageTransition';
 import { ScrollToTop } from '@/components/ScrollToTop/ScrollToTop';
+import { AnnotateToolbar } from '@/components/AnnotateToolbar/AnnotateToolbar';
+import { PlaygroundLauncher } from '@/components/PlaygroundLauncher/PlaygroundLauncher';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
 import { HomePage } from '@/pages/Home';
 import { HowIThinkPage } from '@/pages/HowIThink';
@@ -13,6 +15,10 @@ import { ProjectDetailPage } from '@/pages/ProjectDetail';
 import { ArtifactsPage } from '@/pages/Artifacts';
 import { LessonsPage } from '@/pages/Lessons';
 import { ExploringPage } from '@/pages/Exploring';
+import { PlaygroundPage } from '@/pages/Playground';
+import { PlaygroundAnnotatePage } from '@/pages/PlaygroundAnnotate';
+import { PlaygroundMaskPage } from '@/pages/PlaygroundMask';
+import { PlaygroundRequirementsPage } from '@/pages/PlaygroundRequirements';
 import { NotFoundPage } from '@/pages/NotFound';
 
 export default function App() {
@@ -23,6 +29,8 @@ export default function App() {
       <ScrollToTop />
       <div className="page__grid" aria-hidden="true" />
       <Nav />
+      <AnnotateToolbar />
+      <PlaygroundLauncher />
       <ClickSpark
         sparkColor="#f5c518"
         sparkSize={10}
@@ -44,6 +52,13 @@ export default function App() {
                 <Route path="/artifacts" element={<ArtifactsPage />} />
                 <Route path="/lessons" element={<LessonsPage />} />
                 <Route path="/exploring" element={<ExploringPage />} />
+                <Route path="/playground" element={<PlaygroundPage />} />
+                <Route path="/playground/annotate" element={<PlaygroundAnnotatePage />} />
+                <Route path="/playground/mask-a-record" element={<PlaygroundMaskPage />} />
+                <Route
+                  path="/playground/requirements-generator"
+                  element={<PlaygroundRequirementsPage />}
+                />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </PageTransition>

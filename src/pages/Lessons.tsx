@@ -25,7 +25,9 @@ export function LessonsPage() {
                   <Lightbulb size={18} weight="duotone" aria-hidden="true" />
                   {lesson.title}
                 </h2>
-                <p className="lesson-card__insight">{lesson.insight}</p>
+                <p className="lesson-card__insight" data-annotatable>
+                  {lesson.insight}
+                </p>
               </div>
             </article>
           ))}

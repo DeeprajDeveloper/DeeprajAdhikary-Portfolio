@@ -1,0 +1,15 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.annotate-intro {
+  @include content-column;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  p {
+    @include type-body;
+    color: $color-slate-900;
+    margin: 0;
+  }
+}

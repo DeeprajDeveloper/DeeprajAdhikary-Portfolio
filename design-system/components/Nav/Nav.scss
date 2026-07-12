@@ -82,6 +82,7 @@ $menu-island-radius: 0.5rem;
 }
 
 .theme-island {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -99,12 +100,9 @@ $menu-island-radius: 0.5rem;
 
 .menu-island {
   position: relative;
-  top: auto;
-  right: auto;
-  z-index: auto;
   display: flex;
   flex-direction: column;
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   width: calc(2.25rem + #{$space-4});
   min-width: calc(2.25rem + #{$space-4});
   max-width: calc(2.25rem + #{$space-4});
@@ -127,15 +125,14 @@ $menu-island-radius: 0.5rem;
   @include respond-to(md) {
     width: fit-content;
     min-width: 0;
-    max-width: calc(100vw - #{$space-8} - 5rem);
+    max-width: calc(100vw - #{$space-8} - 6rem);
   }
 
+  // Stay in flex flow so the theme island shifts left as the menu grows.
   &--open {
-    position: absolute;
-    right: 0;
-    width: min(20rem, calc(100vw - #{$space-8}));
-    min-width: min(20rem, calc(100vw - #{$space-8}));
-    max-width: min(20rem, calc(100vw - #{$space-8}));
+    width: min(20rem, calc(100vw - #{$space-8} - 5.5rem));
+    min-width: min(20rem, calc(100vw - #{$space-8} - 5.5rem));
+    max-width: min(20rem, calc(100vw - #{$space-8} - 5.5rem));
     padding: $space-3 $space-3 $space-4;
   }
 
@@ -187,7 +184,7 @@ $menu-island-radius: 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     opacity: 1;
-    transition: opacity 140ms ease;
+    transition: opacity 80ms ease;
 
     @include respond-to(md) {
       display: inline;
@@ -241,7 +238,7 @@ $menu-island-radius: 0.5rem;
 
   &__icon {
     position: absolute;
-    transition: opacity 120ms ease;
+    transition: opacity 80ms ease;
 
     &--burger {
       opacity: 1;
@@ -264,7 +261,7 @@ $menu-island-radius: 0.5rem;
     overflow: hidden;
     min-height: 0;
     opacity: 0;
-    transition: opacity 160ms ease;
+    transition: opacity 90ms ease;
     pointer-events: none;
 
     .menu-island--open & {
@@ -330,6 +327,27 @@ $menu-island-radius: 0.5rem;
     line-height: 1;
     color: $color-slate-500;
     opacity: 0.85;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__star {
+    color: $color-slate-500;
+  }
+
+  &__link--playground {
+    .menu-island__star {
+      color: $color-ink;
+    }
+
+    &.menu-island__link--active .menu-island__star {
+      color: $color-highlighter-yellow;
+    }
+  }
+
+  &__link--active .menu-island__index {
+    color: $color-ink;
   }
 }
 

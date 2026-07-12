@@ -16,6 +16,7 @@ export const navLinks = [
   { label: 'My Artifacts', href: '/artifacts' },
   { label: 'Lessons Learned', href: '/lessons' },
   { label: 'Exploring & Learning', href: '/exploring' },
+  { label: 'Playground', href: '/playground' },
 ] as const;
 
 export const footerLinks = [

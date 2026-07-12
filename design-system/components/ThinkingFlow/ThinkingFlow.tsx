@@ -55,8 +55,10 @@ export function ThinkingFlow({ stages }: ThinkingFlowProps) {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <h3 className="thinking-flow__panel-title">{active.label}</h3>
-          <p className="thinking-flow__panel-summary">{active.summary}</p>
-          <p className="thinking-flow__panel-detail">{active.detail}</p>
+          <div data-annotatable>
+            <p className="thinking-flow__panel-summary">{active.summary}</p>
+            <p className="thinking-flow__panel-detail">{active.detail}</p>
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>

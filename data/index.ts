@@ -7,3 +7,4 @@ export * from './projects';
 export * from './artifacts';
 export * from './lessons';
 export * from './exploring';
+export * from './playground';
