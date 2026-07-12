@@ -61,7 +61,7 @@ export function HomePage() {
               eyebrow="Process"
               title="How I Think"
               description="An interactive walkthrough of my problem-solving approach — from problem to iteration."
-              href="/how-i-think"
+              href="/thinking"
             />
             <SectionTeaser
               eyebrow="Artifacts"

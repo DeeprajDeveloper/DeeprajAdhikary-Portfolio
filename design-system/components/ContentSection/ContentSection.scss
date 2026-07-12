@@ -12,6 +12,7 @@
 .content-section__label {
   @include type-h3;
   margin-bottom: $space-4;
+  color: $color-slate-500;
 }
 
 .content-section__body {
@@ -20,6 +21,6 @@
 }
 
 .content-section--placeholder .content-section__body {
-  font-style: italic;
-  color: $color-slate-700;
+  // font-style: italic;
+  color: $color-ink;
 }

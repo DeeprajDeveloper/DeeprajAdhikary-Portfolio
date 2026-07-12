@@ -2,31 +2,29 @@
 
 .site-footer {
   &--page {
-    margin-top: $space-24;
-    padding-block: $space-8 $space-12;
-    @include page-container;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $space-4;
-    text-align: center;
-
-    @include respond-to(md) {
-      display: none;
-    }
+    width: 100%;
+    margin-top: $space-16;
+    border-top: 1px solid $color-slate-300;
+    background-color: $color-paper;
   }
 
   &--nav {
-    display: none;
     width: 100%;
+  }
 
-    @include respond-to(md) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: $space-2;
-      text-align: center;
-    }
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+    width: 100%;
+    padding-block: $space-4;
+    padding-inline: $space-6;
+  }
+
+  &--page &__inner {
+    @include page-container;
+    padding-block: $space-4;
   }
 
   &__copy {
@@ -36,44 +34,27 @@
     line-height: $leading-small;
   }
 
-  &--nav &__copy {
-    font-size: 0.75rem;
-    max-width: 14rem;
-  }
-
   &__links {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: $space-3;
+    gap: $space-1;
   }
 
   &__link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: $radius-sm;
     color: $color-slate-700;
     text-decoration: none;
-    transition: color $transition-fast, background-color $transition-fast,
-      transform $transition-fast;
+    transition: color $transition-fast, background-color $transition-fast;
     @include focus-ring;
 
     &:hover {
       color: $color-ink;
       background-color: color-mix(in srgb, var(--color-slate-300) 55%, transparent);
-      // transform: translateY(-1px);
     }
-
-    &:active {
-      transform: translateY(0);
-    }
-  }
-
-  &--nav &__link {
-    width: 2rem;
-    height: 2rem;
   }
 }

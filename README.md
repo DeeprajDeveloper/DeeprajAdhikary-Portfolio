@@ -35,7 +35,7 @@ Routes are defined in `src/App.tsx` — a simple list mapping URLs to page compo
 | URL | File |
 |---|---|
 | `/` | `src/pages/Home.tsx` |
-| `/how-i-think` | `src/pages/HowIThink.tsx` |
+| `/thinking` | `src/pages/HowIThink.tsx` |
 | `/case-studies/:slug` | `src/pages/CaseStudyDetail.tsx` |
 
 No file-based routing magic — just React Router.

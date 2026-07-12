@@ -5,16 +5,17 @@
   align-items: flex-start;
   gap: $space-3;
   padding: $space-4 $space-5;
-  border-radius: $radius-card;
+  border-radius: $radius-sm;
   border: $border-default;
   border-left: 4px solid $color-mustard;
-  background-color: color-mix(in srgb, var(--color-mustard) 12%, transparent);
+  background-color: color-mix(in srgb, var(--color-mustard) 15%, transparent);
+  // background-color: var(--color-paper);
   margin-bottom: $space-8;
 }
 
 .placeholder-banner__icon {
   flex-shrink: 0;
-  color: $color-mustard;
+  color: $color-ink;
 }
 
 .placeholder-banner__text {

@@ -1,5 +1,4 @@
 export { Nav } from './components/Nav/Nav';
-export { MobileNav } from './components/Nav/MobileNav';
 export { Footer } from './components/Footer/Footer';
 export { Button } from './components/Button/Button';
 export { Tag } from './components/Tag/Tag';
@@ -15,6 +14,7 @@ export { ContentSection } from './components/ContentSection/ContentSection';
 export { PerspectiveCard } from './components/PerspectiveCard/PerspectiveCard';
 export { Callout } from './components/Callout/Callout';
 export { ThemeToggle } from './components/ThemeToggle/ThemeToggle';
+export { ThemeSwitch } from './components/ThemeSwitch/ThemeSwitch';
 export { ThemeProvider, useTheme } from './context/ThemeContext';
 export { ClickSpark } from './components/ClickSpark/ClickSpark';
 export type { ClickSparkProps } from './components/ClickSpark/ClickSpark';

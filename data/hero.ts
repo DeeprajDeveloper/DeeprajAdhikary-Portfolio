@@ -19,8 +19,8 @@ export const hero = {
     'Quality Engineer',
   ],
   subheadline:
-    'Business Analysis, Development, and Quality Engineering — not as separate roles, but as interconnected ways of seeing the same problem.',
-  cta: { label: 'Explore how I think', href: '/how-i-think' },
+    'Business Analysis, Development, and Quality Engineering - not as separate roles, but as interconnected ways of seeing the same problem.',
+  cta: { label: 'Explore my thinking', href: '/thinking' },
   secondaryCta: { label: 'View perspectives', href: '/perspectives' },
   orbitOrbs: [
     {

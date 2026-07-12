@@ -10,10 +10,18 @@ import {
 import { useLocation, type Location } from 'react-router-dom';
 import { useTheme } from '@design-system/index';
 import { features } from '@config/features';
+import { hero } from '@data/hero';
 import './PageTransition.scss';
+
+const HOLD_MS = 700;
 
 interface PageTransitionProps {
   children: ReactElement<{ location?: Location }>;
+}
+
+function pickRole(): string {
+  const roles = hero.eyebrowRoles;
+  return roles[Math.floor(Math.random() * roles.length)] ?? '';
 }
 
 export function PageTransition({ children }: PageTransitionProps) {
@@ -22,7 +30,8 @@ export function PageTransition({ children }: PageTransitionProps) {
   const enabled = features.pageTransitions;
   const isFirstRender = useRef(true);
   const [renderLocation, setRenderLocation] = useState(location);
-  const [phase, setPhase] = useState<'idle' | 'cover' | 'reveal'>('idle');
+  const [phase, setPhase] = useState<'idle' | 'cover' | 'hold' | 'reveal'>('idle');
+  const [role, setRole] = useState('');
   const pendingLocation = useRef<Location | null>(null);
 
   useEffect(() => {
@@ -46,8 +55,19 @@ export function PageTransition({ children }: PageTransitionProps) {
     }
 
     pendingLocation.current = location;
+    setRole(pickRole());
     setPhase('cover');
   }, [enabled, location, renderLocation.pathname]);
+
+  useEffect(() => {
+    if (phase !== 'hold') return;
+
+    const timer = window.setTimeout(() => {
+      setPhase('reveal');
+    }, HOLD_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [phase]);
 
   const handlePanelAnimationEnd = (event: AnimationEvent<HTMLDivElement>) => {
     if (event.target !== event.currentTarget) return;
@@ -57,7 +77,7 @@ export function PageTransition({ children }: PageTransitionProps) {
         setRenderLocation(pendingLocation.current);
         pendingLocation.current = null;
       }
-      setPhase('reveal');
+      setPhase('hold');
       return;
     }
 
@@ -83,7 +103,10 @@ export function PageTransition({ children }: PageTransitionProps) {
             className="page-transition__panel"
             onAnimationEnd={handlePanelAnimationEnd}
           >
-            <img src={logoSrc} alt="" className="page-transition__logo" />
+            <div className="page-transition__content">
+              <img src={logoSrc} alt="" className="page-transition__logo" />
+              {role && <p className="page-transition__role">{role}</p>}
+            </div>
           </div>
         </div>
       )}

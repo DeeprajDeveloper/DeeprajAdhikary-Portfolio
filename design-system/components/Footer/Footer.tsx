@@ -15,31 +15,32 @@ const footerIcons: Record<(typeof footerLinks)[number]['label'], Icon> = {
 
 export function Footer({ variant = 'page' }: FooterProps) {
   const year = new Date().getFullYear();
-  const iconSize = variant === 'nav' ? 22 : 24;
 
   return (
     <footer className={`site-footer site-footer--${variant}`}>
-      <p className="site-footer__copy">
-        &copy; {year} {site.fullName}
-      </p>
+      <div className="site-footer__inner">
+        <p className="site-footer__copy">
+          &copy; {year} {site.fullName}
+        </p>
 
-      <nav className="site-footer__links" aria-label="Footer links">
-        {footerLinks.map((link) => {
-          const IconComponent = footerIcons[link.label];
+        <nav className="site-footer__links" aria-label="Footer links">
+          {footerLinks.map((link) => {
+            const IconComponent = footerIcons[link.label];
 
-          return (
-            <a
-              key={link.label}
-              href={link.href}
-              className="site-footer__link"
-              aria-label={link.label}
-              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-            >
-              <IconComponent size={iconSize} weight="duotone" aria-hidden="true" />
-            </a>
-          );
-        })}
-      </nav>
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className="site-footer__link"
+                aria-label={link.label}
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <IconComponent size={18} weight="duotone" aria-hidden="true" />
+              </a>
+            );
+          })}
+        </nav>
+      </div>
     </footer>
   );
 }
