@@ -48,29 +48,13 @@ export function ProjectDetailPage() {
           description={project.tagline}
           actions={
             <>
-              <Button
-                href={project.liveUrl}
-                external
-                variant="primary"
-                size="sm"
-                className="project-detail__cta project-detail__cta--live"
-              >
-                <span className="project-detail__cta-face">
-                  <GlobeIcon size={16} weight="duotone" aria-hidden="true" />
-                  Live website
-                </span>
+              <Button href={project.liveUrl} external variant="primary" size="sm">
+                <GlobeIcon size={16} weight="duotone" aria-hidden="true" />
+                Live website
               </Button>
-              <Button
-                href={project.repoUrl}
-                external
-                variant="secondary"
-                size="sm"
-                className="project-detail__cta project-detail__cta--github"
-              >
-                <span className="project-detail__cta-face">
-                  <GithubLogoIcon size={16} weight="duotone" aria-hidden="true" />
-                  Git repo
-                </span>
+              <Button href={project.repoUrl} external variant="secondary" size="sm">
+                <GithubLogoIcon size={16} weight="duotone" aria-hidden="true" />
+                Git repo
               </Button>
             </>
           }

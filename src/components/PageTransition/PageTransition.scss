@@ -7,57 +7,80 @@
   pointer-events: none;
 
   &--cover,
+  &--hold,
   &--reveal {
     pointer-events: all;
   }
 
   &__panel {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    height: 100dvh;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    will-change: width;
-    background-color: color-mix(in srgb, var(--color-paper) 82%, transparent);
-    backdrop-filter: blur(12px);
-    border-right: $border-default;
+    background-color: $color-paper;
+    will-change: clip-path, opacity;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-4;
+    text-align: center;
+    padding-inline: $space-6;
   }
 
   &__logo {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     flex-shrink: 0;
     will-change: transform, opacity;
   }
 
-  &--cover &__panel {
-    width: $side-nav-width;
-    animation: page-transition-panel-cover 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  &__role {
+    margin: 0;
+    font-family: $font-ui;
+    font-size: $text-h2;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-ink;
+    white-space: nowrap;
+  }
 
-    @media (max-width: #{$breakpoint-md - 1px}) {
-      animation-name: page-transition-panel-cover-mobile;
-    }
+  &--cover &__panel {
+    clip-path: circle(0% at 50% 50%);
+    animation: page-transition-panel-cover 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  &--hold &__panel {
+    clip-path: circle(150% at 50% 50%);
   }
 
   &--cover &__logo {
-    animation: page-transition-logo-in 0.18s ease both;
+    animation: page-transition-logo-in 0.22s ease both;
+    animation-delay: 0.12s;
+  }
+
+  &--cover &__role {
+    animation: page-transition-logo-in 0.22s ease both;
+    animation-delay: 0.18s;
+  }
+
+  &--hold &__logo,
+  &--hold &__role {
+    opacity: 1;
   }
 
   &--reveal &__panel {
-    width: 100vw;
-    animation: page-transition-panel-reveal 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-
-    @media (max-width: #{$breakpoint-md - 1px}) {
-      animation-name: page-transition-panel-reveal-mobile;
-    }
+    clip-path: circle(150% at 50% 50%);
+    animation: page-transition-panel-reveal 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
   }
 
-  &--reveal &__logo {
-    animation: page-transition-logo-out 0.15s ease both;
+  &--reveal &__logo,
+  &--reveal &__role {
+    animation: page-transition-logo-out 0.2s ease both;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -67,41 +90,23 @@
 
 @keyframes page-transition-panel-cover {
   from {
-    width: $side-nav-width;
+    clip-path: circle(0% at 50% 50%);
   }
 
   to {
-    width: 100vw;
+    clip-path: circle(150% at 50% 50%);
   }
 }
 
 @keyframes page-transition-panel-reveal {
   from {
-    width: 100vw;
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
   }
 
   to {
-    width: $side-nav-width;
-  }
-}
-
-@keyframes page-transition-panel-cover-mobile {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 100vw;
-  }
-}
-
-@keyframes page-transition-panel-reveal-mobile {
-  from {
-    width: 100vw;
-  }
-
-  to {
-    width: 0;
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
   }
 }
 

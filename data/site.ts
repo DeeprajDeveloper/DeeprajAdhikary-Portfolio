@@ -8,14 +8,14 @@ export const site = {
 };
 
 export const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'How I Think', href: '/how-i-think' },
-  { label: 'Perspectives', href: '/perspectives' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Artifacts', href: '/artifacts' },
-  { label: 'Lessons', href: '/lessons' },
-  { label: 'Exploring', href: '/exploring' },
+  { label: 'Home Page', href: '/' },
+  { label: 'Peek into My Thoughts', href: '/thinking' },
+  { label: 'View My Perspectives', href: '/perspectives' },
+  { label: 'My Case Studies', href: '/case-studies' },
+  { label: 'Check Out My Projects', href: '/projects' },
+  { label: 'My Artifacts', href: '/artifacts' },
+  { label: 'Lessons Learned', href: '/lessons' },
+  { label: 'Exploring & Learning', href: '/exploring' },
 ] as const;
 
 export const footerLinks = [

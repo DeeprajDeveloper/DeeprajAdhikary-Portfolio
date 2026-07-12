@@ -40,10 +40,12 @@ export function Button({
     .filter(Boolean)
     .join(' ');
 
+  const content = <span className="btn__face">{children}</span>;
+
   if (to && !disabled) {
     return (
       <Link to={to} className={classes}>
-        {children}
+        {content}
       </Link>
     );
   }
@@ -52,20 +54,20 @@ export function Button({
     if (external) {
       return (
         <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
-          {children}
+          {content}
         </a>
       );
     }
     return (
       <Link to={href} className={classes}>
-        {children}
+        {content}
       </Link>
     );
   }
 
   return (
     <button type={type} className={classes} disabled={disabled} onClick={onClick}>
-      {children}
+      {content}
     </button>
   );
 }

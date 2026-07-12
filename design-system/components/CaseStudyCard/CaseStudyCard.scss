@@ -11,6 +11,7 @@
   &:hover {
     box-shadow: $shadow-elevated;
     transform: translateY(-2px);
+    border-color: $color-slate-500;
   }
 
   &__link {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { ArrowFatLinesDownIcon } from '@phosphor-icons/react';
 import { features } from '@config/features';
 import { hero } from '@data/hero';
@@ -21,6 +21,51 @@ const [headlineBefore, headlineAfter] = (() => {
   ];
 })();
 
+function splitWords(text: string): string[] {
+  return text.trim().split(/\s+/).filter(Boolean);
+}
+
+/** Ease-in-out cubic: slow start, fast middle, slow end. */
+function easeInOutCubic(t: number): number {
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+}
+
+const CASCADE_SECONDS = 1.15;
+
+function wordDelay(index: number, total: number): number {
+  if (total <= 1) return 0;
+  return easeInOutCubic(index / (total - 1)) * CASCADE_SECONDS;
+}
+
+function HeroWords({
+  words,
+  startIndex,
+  total,
+  className = '',
+}: {
+  words: string[];
+  startIndex: number;
+  total: number;
+  className?: string;
+}) {
+  return words.map((word, offset) => {
+    const index = startIndex + offset;
+    return (
+      <span
+        key={`${index}-${word}`}
+        className={`hero__word ${className}`.trim()}
+        style={
+          {
+            '--hero-word-delay': wordDelay(index, total),
+          } as CSSProperties
+        }
+      >
+        <span className="hero__word-inner">{word}</span>
+      </span>
+    );
+  });
+}
+
 export function Hero() {
   const [lensesHovered, setLensesHovered] = useState(false);
   const typedEyebrow = useTypingRoles(hero.eyebrowRoles);
@@ -32,6 +77,11 @@ export function Hero() {
     lensesTypewriterEnabled && lensesHovered
       ? typedPerspective
       : hero.headlineInteractive;
+
+  const beforeWords = splitWords(headlineBefore);
+  const interactiveWords = splitWords(hero.headlineInteractive);
+  const afterWords = splitWords(headlineAfter);
+  const totalWords = beforeWords.length + interactiveWords.length + afterWords.length;
 
   const scrollToContent = () => {
     document.getElementById('perspectives')?.scrollIntoView({
@@ -53,10 +103,10 @@ export function Hero() {
         </span>
 
         <h1 id="hero-heading" className="hero__hook">
-          {headlineBefore}
+          <HeroWords words={beforeWords} startIndex={0} total={totalWords} />
           {lensesTypewriterEnabled ? (
             <span
-              className="hero__lenses hero__highlight"
+              className="hero__lenses"
               onMouseEnter={() => setLensesHovered(true)}
               onMouseLeave={() => setLensesHovered(false)}
               onFocus={() => setLensesHovered(true)}
@@ -64,17 +114,33 @@ export function Hero() {
               tabIndex={0}
               aria-label={`Perspectives: ${hero.headlinePerspectives.join(', ')}`}
             >
-              <span className="hero__lenses-line">
-                <span className="hero__lenses-text">{lensesText}</span>
-                {lensesHovered && (
+              {lensesHovered ? (
+                <span className="hero__lenses-line hero__highlight">
+                  <span className="hero__lenses-text">{lensesText}</span>
                   <span className="hero__lenses-cursor" aria-hidden="true" />
-                )}
-              </span>
+                </span>
+              ) : (
+                <HeroWords
+                  words={interactiveWords}
+                  startIndex={beforeWords.length}
+                  total={totalWords}
+                  className="hero__word--highlight"
+                />
+              )}
             </span>
           ) : (
-            <span className="hero__highlight">{hero.headlineInteractive}</span>
+            <HeroWords
+              words={interactiveWords}
+              startIndex={beforeWords.length}
+              total={totalWords}
+              className="hero__word--highlight"
+            />
           )}
-          {headlineAfter}
+          <HeroWords
+            words={afterWords}
+            startIndex={beforeWords.length + interactiveWords.length}
+            total={totalWords}
+          />
         </h1>
 
         <p className="hero__subhead">{hero.subheadline}</p>

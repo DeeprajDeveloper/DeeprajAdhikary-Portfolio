@@ -56,13 +56,13 @@ export function ThemeToggle({ variant = 'default' }: ThemeToggleProps) {
       title={showShortcutLabels ? `${label} (${themeShortcut.label})` : label}
     >
       <SunIcon
-        className="theme-toggle__icon theme-toggle__icon--SunIcon"
+        className="theme-toggle__icon theme-toggle__icon--sun"
         size={18}
         weight="duotone"
         aria-hidden="true"
       />
       <MoonIcon
-        className="theme-toggle__icon theme-toggle__icon--MoonIcon"
+        className="theme-toggle__icon theme-toggle__icon--moon"
         size={18}
         weight="duotone"
         aria-hidden="true"

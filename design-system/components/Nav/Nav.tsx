@@ -1,117 +1,168 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
+import {
+  PackageIcon,
+  DetectiveIcon,
+  CompassIcon,
+  RocketLaunchIcon,
+  IntersectThreeIcon,
+  HouseIcon,
+  NotePencilIcon,
+  ListIcon,
+  BrainIcon,
+  XIcon,
+  type Icon,
+} from '@phosphor-icons/react';
 import { site, navLinks } from '@data/site';
 import { navShortcuts } from '@data/shortcuts';
 import { features } from '@config/features';
-import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
-import { Footer } from '../Footer/Footer';
+import { ThemeSwitch } from '../ThemeSwitch/ThemeSwitch';
 import { matchNavIndex } from '@/hooks/useScrollNav';
 import './Nav.scss';
 
+const navIcons: Record<(typeof navLinks)[number]['href'], Icon> = {
+  '/': HouseIcon,
+  '/thinking': BrainIcon,
+  '/perspectives': IntersectThreeIcon,
+  '/case-studies': DetectiveIcon,
+  '/projects': RocketLaunchIcon,
+  '/artifacts': PackageIcon,
+  '/lessons': NotePencilIcon,
+  '/exploring': CompassIcon,
+};
+
 export function Nav() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
-  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [open, setOpen] = useState(false);
+  const islandRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
 
-  const activeIndex = isHome ? (clickedIndex ?? 0) : matchNavIndex(location.pathname);
+  const activeIndex = matchNavIndex(location.pathname);
+  const activeLabel = navLinks[activeIndex]?.label ?? 'Menu';
   const showShortcutLabels = features.shortcutLabels;
   const showShortcutKeys = features.shortcutKeys;
 
-  const scrollActiveLinkToCenter = useCallback(() => {
-    const viewport = viewportRef.current;
-    const activeLink = linkRefs.current[activeIndex];
-    if (!viewport || !activeLink) return;
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const linkRect = activeLink.getBoundingClientRect();
-    const viewportRect = viewport.getBoundingClientRect();
-    const linkCenter =
-      linkRect.top - viewportRect.top + viewport.scrollTop + linkRect.height / 2;
-    const targetScroll = linkCenter - viewport.clientHeight / 2;
-
-    viewport.scrollTo({
-      top: Math.max(0, targetScroll),
-      behavior: reducedMotion ? 'auto' : 'smooth',
-    });
-  }, [activeIndex]);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
-    if (isHome) {
-      setClickedIndex(null);
-    }
-  }, [isHome]);
+    if (!open) return;
 
-  useEffect(() => {
-    scrollActiveLinkToCenter();
-  }, [scrollActiveLinkToCenter]);
-
-  useEffect(() => {
-    const handlePageClick = (event: MouseEvent) => {
+    const handlePointerDown = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Node)) return;
-      if (target instanceof Element && target.closest('.side-nav, .side-nav-mobile')) return;
-
-      scrollActiveLinkToCenter();
+      if (islandRef.current?.contains(target)) return;
+      setOpen(false);
     };
 
-    document.addEventListener('click', handlePageClick);
-    return () => document.removeEventListener('click', handlePageClick);
-  }, [scrollActiveLinkToCenter]);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
 
-  const handleNavClick = (index: number) => {
-    setClickedIndex(index);
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
+
+  const toggleMenu = () => {
+    setOpen((prev) => !prev);
   };
 
   return (
-    <aside className="side-nav" aria-label="Site navigation">
-      <div className="side-nav__header">
-        <Link to="/" className="side-nav__brand" onClick={() => handleNavClick(0)}>
-          {site.name}
-        </Link>
-      </div>
+    <>
+      <Link to="/" className="brand-island">
+        <span className="brand-island__name">{site.name}</span>
+      </Link>
 
-      <div ref={viewportRef} className="side-nav__viewport">
-        <nav className="side-nav__track" aria-label="Main navigation">
-          {navLinks.map((link, index) => {
-            const isActive = index === activeIndex;
-            const distance = Math.abs(index - activeIndex);
+      <div className="nav-islands">
+        <div className="theme-island">
+          <ThemeSwitch />
+        </div>
 
-            return (
-              <Link
-                key={link.href}
-                ref={(element) => {
-                  linkRefs.current[index] = element;
-                }}
-                to={link.href}
-                className={`side-nav__link ${isActive ? 'side-nav__link--active' : ''}`}
-                data-distance={Math.min(distance, 3)}
-                aria-current={isActive ? 'page' : undefined}
-                {...(showShortcutKeys
-                  ? { 'aria-keyshortcuts': navShortcuts[index].key }
-                  : {})}
-                title={
-                  showShortcutLabels
-                    ? `${link.label} (${navShortcuts[index].key})`
-                    : link.label
-                }
-                onClick={() => handleNavClick(index)}
-              >
-                <span className="side-nav__link-label">{link.label}</span>
-                {showShortcutLabels && (
-                  <kbd className="side-nav__shortcut">{navShortcuts[index].key}</kbd>
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
+        <div
+          ref={islandRef}
+          className={`menu-island ${open ? 'menu-island--open' : ''}`}
+        >
+          <div className="menu-island__bar">
+            <span className="menu-island__current" aria-hidden={open}>
+              {activeLabel}
+            </span>
+            <button
+              ref={toggleRef}
+              type="button"
+              className="menu-island__toggle"
+              aria-expanded={open}
+              aria-controls={menuId}
+              aria-haspopup="true"
+              aria-label={open ? 'Close menu' : `Open menu, current page ${activeLabel}`}
+              onClick={toggleMenu}
+            >
+              <ListIcon
+                className="menu-island__icon menu-island__icon--burger"
+                size={18}
+                weight="bold"
+                aria-hidden="true"
+              />
+              <XIcon
+                className="menu-island__icon menu-island__icon--close"
+                size={16}
+                weight="bold"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
 
-      <div className="side-nav__footer">
-        <ThemeToggle variant="nav" />
-        <Footer variant="nav" />
+          <div className="menu-island__expand" id={menuId}>
+            <div className="menu-island__expand-inner">
+              <nav className="menu-island__nav" aria-label="Main navigation">
+                {navLinks.map((link, index) => {
+                  const isActive = index === activeIndex;
+                  const number = index + 1;
+                  const NavIcon = navIcons[link.href];
+
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className={`menu-island__link ${isActive ? 'menu-island__link--active' : ''}`}
+                      aria-current={isActive ? 'page' : undefined}
+                      tabIndex={open ? undefined : -1}
+                      {...(showShortcutKeys
+                        ? { 'aria-keyshortcuts': navShortcuts[index].key }
+                        : {})}
+                      title={
+                        showShortcutLabels
+                          ? `${link.label} (${navShortcuts[index].key})`
+                          : link.label
+                      }
+                      onClick={() => setOpen(false)}
+                    >
+                      <NavIcon
+                        className="menu-island__link-icon"
+                        size={18}
+                        weight="duotone"
+                        aria-hidden="true"
+                      />
+                      <span className="menu-island__label">{link.label}</span>
+                      <span className="menu-island__index" aria-hidden="true">
+                        {number}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
-    </aside>
+    </>
   );
 }

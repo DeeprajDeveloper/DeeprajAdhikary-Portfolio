@@ -1,69 +1,88 @@
 @use '../../styles/mixins' as *;
 
+// Neo-brutalist pressable buttons (from project Live Website CTA)
 .btn {
+  --btn-radius: 0.55em;
+  --btn-outline: var(--color-slate-500);
+  --btn-face: var(--color-paper);
+  --btn-text: var(--color-ink);
+
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: $space-2;
+  padding: 0;
+  border: none;
+  border-radius: var(--btn-radius);
+  background: var(--btn-outline);
+  color: var(--btn-text);
   font-family: $font-ui;
   font-weight: $font-weight-medium;
   font-size: $text-h4;
   line-height: 1;
-  border-radius: $radius-sm;
-  border: $border-default;
-  padding: $space-3 $space-6;
-  transition:
-    background-color $transition-fast,
-    border-color $transition-fast,
-    color $transition-fast,
-    opacity $transition-fast,
-    transform $transition-fast,
-    box-shadow $transition-fast;
   text-decoration: none;
+  cursor: pointer;
+  box-shadow: none;
+  transform: none;
+  transition: opacity $transition-fast;
   @include focus-ring;
 
-  &--sm {
+  &__face {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--btn-outline);
+    border-radius: var(--btn-radius);
+    padding: $space-3 $space-6;
+    background: var(--btn-face);
+    color: var(--btn-text);
+    transform: translateY(-0.2em);
+    transition:
+      transform 0.1s ease,
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  &:hover:not(:disabled) .btn__face {
+    transform: translateY(-0.33em);
+  }
+
+  &:active:not(:disabled) .btn__face {
+    transform: translateY(0);
+  }
+
+  &--sm .btn__face {
     font-size: $text-small;
     padding: $space-2 $space-4;
   }
 
-  &--md {
+  &--md .btn__face {
+    font-size: $text-h4;
     padding: $space-3 $space-6;
   }
 
   &--primary {
-    background-color: $color-button-primary-bg;
-    color: $color-button-primary-text;
-    border-color: $color-button-primary-bg;
-
-    &:hover:not(:disabled) {
-      background-color: $color-button-primary-hover;
-      border-color: $color-button-primary-hover;
-      color: $color-button-primary-text;
-    }
+    --btn-face: var(--color-button-primary-bg);
+    --btn-text: var(--color-button-primary-text);
+    --btn-outline: var(--color-slate-500);
   }
 
   &--secondary {
-    background-color: $color-button-secondary-bg;
-    color: $color-button-secondary-text;
-    border-color: $color-button-secondary-border;
-
-    &:hover:not(:disabled) {
-      background-color: $color-button-secondary-hover;
-      color: $color-button-secondary-text;
-    }
+    --btn-face: var(--color-button-secondary-bg);
+    --btn-text: var(--color-button-secondary-text);
+    --btn-outline: var(--color-slate-500);
   }
 
   &--tertiary {
-    background: transparent;
-    border-color: transparent;
-    color: $color-ink;
-    padding-inline: 0;
-    @include highlighter-swipe;
+    --btn-face: var(--color-paper);
+    --btn-text: var(--color-ink);
+    --btn-outline: var(--color-slate-500);
 
     &:hover:not(:disabled) {
-      background: transparent;
-      color: $color-ink;
+      --btn-outline: var(--color-slate-700);
     }
   }
 
@@ -73,31 +92,20 @@
   }
 }
 
-// Beat global anchor color so button text stays on token values
-a.btn {
-  color: inherit;
+a.btn,
+a.btn:hover:not(:disabled),
+a.btn:active:not(:disabled) {
+  color: var(--btn-text);
+}
 
-  &.btn--primary {
-    color: $color-button-primary-text;
-
-    &:hover:not(:disabled) {
-      color: $color-button-primary-text;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .btn__face {
+    transition: none;
+    transform: translateY(-0.2em);
   }
 
-  &.btn--secondary {
-    color: $color-button-secondary-text;
-
-    &:hover:not(:disabled) {
-      color: $color-button-secondary-text;
-    }
-  }
-
-  &.btn--tertiary {
-    color: $color-ink;
-
-    &:hover:not(:disabled) {
-      color: $color-ink;
-    }
+  .btn:hover:not(:disabled) .btn__face,
+  .btn:active:not(:disabled) .btn__face {
+    transform: translateY(-0.2em);
   }
 }

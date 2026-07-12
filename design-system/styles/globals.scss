@@ -96,17 +96,11 @@ button {
   &__body {
     position: relative;
     z-index: 1;
+    flex: 1;
     width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-
-    @include respond-to(md) {
-      margin-left: $side-nav-width;
-      width: calc(100% - #{$side-nav-width});
-    }
   }
 }
 
@@ -157,10 +151,10 @@ button {
 }
 
 .inner-page {
-  padding-block: $space-12 $space-16;
+  padding-block: $space-16 $space-16;
 
   @include respond-to(md) {
-    padding-block: $space-16 $space-20;
+    padding-block: $space-20 $space-20;
   }
 }
 
